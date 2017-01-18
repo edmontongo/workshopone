@@ -1,0 +1,47 @@
+Pointers in Go
+22 Feb 2017
+Tags: edmonton-go, golang, workshop, workshop-one, pointers
+
+Matthias Stone
+CTO, Bellstone Engineering
+matthias@bellstone.ca
+@MatthiasStone
++MatthiasStone
+
+* This is not a lesson on pointers
+
+- Brief reminder of what pointers are
+- Discuss semantics of pointers in Go
+
+* In case you forgot...
+
+<Diagram>
+
+* Taking an address
+
+  var a int = 5
+  fmt.Printf("a has value %d and is at %p\n", a, &a)
+
+* Declaring a pointer
+
+  var a int = 5
+  var b *int = &a
+  var c := &a
+
+* Dereferencing a pointer
+
+  var a int = 5
+  var b *int = &a
+  fmt.Printf("%d\n", a)
+  *b = 6;
+  fmt.Printf("%d\n", a)
+
+* Accepting an address
+
+  func mutator(a *int)
+
+* Returning an address
+
+  func allocate() *int
+
+# Yay, garbage collector!

@@ -8,7 +8,7 @@ matthias@bellstone.ca
 @MatthiasStone
 +MatthiasStone
 
-* This is not a lesson on pointers
+* I'm not going to explain pointers
 
 - Brief reminder of what pointers are
 - Discuss semantics of pointers in Go
@@ -19,29 +19,26 @@ matthias@bellstone.ca
 
 * Taking an address
 
-  var a int = 5
-  fmt.Printf("a has value %d and is at %p\n", a, &a)
+.play 06-pointers/address.go /var/,/fmt.Print/
 
 * Declaring a pointer
 
-  var a int = 5
-  var b *int = &a
-  var c := &a
+.play 06-pointers/declare.go /var a/,/&c/
 
 * Dereferencing a pointer
 
-  var a int = 5
-  var b *int = &a
-  fmt.Printf("%d\n", a)
-  *b = 6;
-  fmt.Printf("%d\n", a)
+.play 06-pointers/deref.go /BEGIN OMIT/,/END OMIT/
 
 * Accepting an address
 
-  func mutator(a *int)
+.play 06-pointers/accept.go /BEGIN OMIT/,/END OMIT/
 
 * Returning an address
 
-  func allocate() *int
+.play 06-pointers/return.go /BEGIN OMIT/,/END OMIT/
 
 # Yay, garbage collector!
+
+* nil exists
+
+.play 06-pointers/nil.go /BEGIN OMIT/,/END OMIT/

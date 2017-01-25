@@ -1,0 +1,94 @@
+Functions, Scope, and the Standard Library
+22 Feb 2017
+Tags: edmonton-go, golang, workshop, workshop-one, functions, stdlib, standard, library
+
+James Bell
+CEO, Bellstone Engineering
+james@bellstone.ca
+
+* Creating a Function
+
+.play 04-functions-and-stdlib/printint.go /BEGIN OMIT/,/END OMIT/
+
+* Returning Values
+
+.play 04-functions-and-stdlib/addint.go /BEGIN OMIT/,/END OMIT/
+
+* Importing Packages
+
+.play 04-functions-and-stdlib/import.go
+
+* Importing Packages
+
+.play 04-functions-and-stdlib/strings.go
+
+* Documentation
+
+- Documentation for the standard library is at [[https://golang.org/pkg/]]
+- Documentation for `strings`: [[https://golang.org/pkg/strings/]]
+- Documentation for `strings.Contains`: [[https://golang.org/pkg/strings/#Contains]]
+- Documentation for `fmt.Println`: [[https://golang.org/pkg/fmt/#Println]]
+
+* `interface{}`
+
+- This type is called "the empty interface"
+- It is a variable that can hold any value
+- It is similar to `void*` in C
+- We'll learn more about it in the afternoon
+
+* `...interface{}`
+
+- A parameter prefixed with three dots (...) is a variadic parameter
+- Any number of arguments can be passed into the variadic parameter, as long as they match the required type
+- `...interface{}` is similar to `va_args` in C
+- This will make more sense after learning about slices after lunch
+
+* Calculating Square Root
+
+- There are always two roots for any number (except zero)
+- The square roots of 16 are 4 and -4
+- The standard library function math.Sqrt only returns the positive root
+- Let's fix that...
+
+* Returning Multiple Values
+
+.play 04-functions-and-stdlib/pedanticroot.go /BEGIN OMIT/,/END OMIT/
+
+* Scope
+
+- Variables outside of a function can be accessed from anywhere in the package
+
+.play 04-functions-and-stdlib/scope.go /BEGIN OMIT/,/END OMIT/
+
+- It's necessary to declare the variable with the `var` keyword
+
+.play 04-functions-and-stdlib/badscope.go /BEGIN OMIT/,/END OMIT/
+
+* Scope: Sharing with other Packages
+
+- Note that public functions always start with a capital letter: [[https://golang.org/pkg/strings/]]
+- Lowercase functions and variables are private to the package, but onces that start with a capital can be accessed from other packages
+
+* Remaining Slides
+
+- Two strings, two integers, add the two integers,
+-- Briefly touch on interface{} and ... (magic for now)
+
+* Exercises
+
+- Create a function that returns three arguments for the cubic root of a number
+- Just kidding! You would need the `math/cmplx` package and imaginary numbers
+
+* Exercises
+
+Exercise 1
+
+- Use the standard library function to print an integer in base 23
+- Don't use Google; use godocs
+- You might expect this to be in the `strings` package, but it's not
+
+Exercise 2
+
+- Create a function which solves the quadratic equation when given `a`, `b`, and `c`
+- It will need to return two values
+- Test Data: a=1, b=3, c=-4 returns -4 and 1. a=2, b=-4, c=-3 returns –0.58 and 2.58.

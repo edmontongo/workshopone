@@ -67,7 +67,7 @@ james@bellstone.ca
 * Scope: Sharing with other Packages
 
 - Note that public functions always start with a capital letter: [[https://golang.org/pkg/strings/]]
-- Lowercase functions and variables are private to the package, but onces that start with a capital can be accessed from other packages
+- Lowercase functions and variables are private to the package, but ones that start with a capital can be accessed from other packages
 
 * Remaining Slides
 

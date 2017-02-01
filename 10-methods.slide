@@ -1,0 +1,69 @@
+Methods
+22 Feb 2017
+Tags: edmonton-go, golang, workshop, workshop-one, functions, methods
+
+James Bell
+CEO, Bellstone Engineering
+james@bellstone.ca
+
+* Review: Functions
+
+.play 10-methods/printPerson.go /BEGIN OMIT/,/END OMIT/
+
+* Review: User-defined types
+
+.play 10-methods/userType.go /BEGIN OMIT/,/END OMIT/
+
+* Method on a type
+
+.play 10-methods/methodPrintPerson.go /BEGIN OMIT/,/END OMIT/
+
+* Methods can change data
+
+.play 10-methods/incrementor.go /BEGIN OMIT/,/END OMIT/
+
+* Methods can change data by using pointers
+
+- In order to change data, the method must act on a pointer.
+- The only necessary change to the `Incrementor` is to make the `Increment` function take a pointer.
+
+.play 10-methods/incrementorFixed.go /BEGIN OMIT/,/END OMIT/
+
+* Go converts between pointers and values automatically
+
+- On the last slide, an `Incrementor` value was used to call a pointer method.
+- Here, the variable `inc` is created as a pointer instead of as a value, but there's no need to change the rest of the code.
+
+.play 10-methods/incrementorPointer.go /BEGIN OMIT/,/END OMIT/
+
+* Scope
+
+- As with functions and variables, capitalized methods can be accessed from other packages.
+- The incrementor's `int` is private, but all of the methods and the type are public.
+
+.play 10-methods/incrementorFixed.go /func main/,/END OMIT/
+
+* Printing user types
+
+- The default printout of a type is usually not desired.
+
+.play 10-methods/printPersonDefault.go /BEGIN OMIT/,/END OMIT/
+
+* Printing user types: Stringer
+
+- The `String` method will automatically be used if it exists.
+
+.play 10-methods/personStringer.go /BEGIN OMIT/,/END OMIT/
+
+* Chaining calls
+
+# This isn't very important and isn't special to go, so should probably be dropped.
+
+.play 10-methods/chainIncrementor.go /BEGIN OMIT/,/END OMIT/
+
+# Probably add a slide about automatically calling methods of embedded types, but only if the talk about user types has already explained embedded types. (Otherwise, my `Incrementor` slides need to stop embedding `i`.)
+
+* Exercises
+
+- Add a stringer to the type you created in the exercises from the last talk, and use it.
+- Change all of the functions you created in the last talk's exercises to be methods.

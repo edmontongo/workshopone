@@ -1,0 +1,22 @@
+Basic of Go
+22 Feb 2017
+Tags: edmontongo, golang, workshop
+
+Nathan Youngman
+@nathany
+
+* Basics of Go
+
+Playground
+
+curly bracket language { }
+no semicolons;
+gofmt is a thing
+
+package, import, main func
+
+fmt.Println("Hello world")
+
+* exercise
+
+say hello to your neighbour

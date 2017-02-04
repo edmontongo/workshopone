@@ -1,0 +1,13 @@
+Interfaces in Go
+22 Feb 2017
+Tags: edmontongo, golang, workshop
+
+* Satisfying interfaces
+
+e.g. Stringer
+
+the interface keyword, method set
+usage
+
+mention interface{}
+

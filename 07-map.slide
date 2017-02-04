@@ -1,0 +1,20 @@
+Maps in Go
+22 Feb 2017
+Tags: edmontongo, golang, workshop
+
+* Maps
+
+composite literal for creating maps
+
+basic index a[key]
+
+zero values
+comma, ok presence check
+
+range key value
+unordered
+
+delete keyword
+
+reference type
+

@@ -1,0 +1,14 @@
+Defined types and structs in Go
+22 Feb 2017
+Tags: edmontongo, golang, workshop
+
+* Defined types
+
+type keyword. defining a new type
+
+* Structs
+
+syntax
+nesting structs
+
+pass by value

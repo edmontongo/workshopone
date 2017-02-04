@@ -1,0 +1,25 @@
+Slices in Go
+22 Feb 2017
+Tags: edmontongo, golang, workshop
+
+Nathan Youngman
+@nathany
+
+* Slices
+
+composite literal
+
+iteration
+two values
+blank identifier
+
+slicing
+default indices
+
+append
+
+link to gotchas:
+capacity
+third index
+backing arrays
+make

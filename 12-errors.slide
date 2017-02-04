@@ -2,12 +2,14 @@ Errors in Go
 22 Feb 2017
 Tags: edmontongo, golang, workshop
 
-* the philosophy of error
+* 1. Introduction
 
-in other languages
-strategies
+- the philosophy of error
+- error handling in other languages (contrast C/Java/Python, exceptions)
+- why Go errors are so simple: beauty/power in simplicity
+- error handling strategies: e.g. Erlang "let it crash"
 
-* error handling of Go
+* 2. error handling of Go
 
 proverbs
 - Errors are values.
@@ -19,5 +21,9 @@ errors.New, fmt.Errorf
 var Err* sentinel errors
 custom ThatError struct and Error()
 
-* exercise
+* 3. Outro section
+
+- advanced error handling in go
+- error handling patterns
+- exercise
 

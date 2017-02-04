@@ -1,0 +1,23 @@
+Errors in Go
+22 Feb 2017
+Tags: edmontongo, golang, workshop
+
+* the philosophy of error
+
+in other languages
+strategies
+
+* error handling of Go
+
+proverbs
+- Errors are values.
+- Don't just check errors, handle them gracefully.
+
+error interface
+
+errors.New, fmt.Errorf
+var Err* sentinel errors
+custom ThatError struct and Error()
+
+* exercise
+

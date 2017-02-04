@@ -2,19 +2,73 @@ Maps in Go
 22 Feb 2017
 Tags: edmontongo, golang, workshop
 
+Lukasz Rozycki
+[[https://lukaszr.com]]
+
 * Maps
 
-composite literal for creating maps
+- Hash Table, Dictionary
+- Mapping from key to a value
+- Fast lookups, adds, and deletes
+- A Go map type looks like this:
+ map[KeyType]ValueType
 
-basic index a[key]
+* What can be a key?
 
-zero values
-comma, ok presence check
+- Any type that is comparable
+ ==    equal
+ !=    not equal
+- boolean, numeric, string, pointer
+- interface type, channel
+- struct or array containing above
+- Not slice, map, nor function
+
+* Creating a map
+- composite literal
+ TODO example
+- empty map
+ TODO example
+- types in declaration vs type in literal
+ TODO example
+
+* Lookup
+- index expression
+ TODO someMap[key]
+- zero value
+ TODO example
+- "comma ok" idiom
+ TODO example
+
+* Addition and deletion
+- index expression
+ TODO someMap[key] = value
+- zero value and counting
+ TODO someMap[key] += value
+ TODO example count even / odd with True / False
+- delete built-in function
+ func delete(m map[Type]Type1, key Type)
+ TODO example
+- delete no-op if no such element
+ TODO example
+* Map is a reference type
+- zero value is `nil`
+- delete(nil, key) no-op
+ TODO example
+- passing to a function
+ TODO example
+- assigning second handle
+ TODO example
+
+* notes
 
 range key value
 unordered
+ - random order, as people were relying on the order
+do set with map
+Maps are not safe for concurrent use
 
-delete keyword
-
-reference type
-
+* Resources
+- [[https://blog.golang.org/go-maps-in-action][Go maps in action]] 
+- [[https://golang.org/doc/effective_go.html#maps][Effective Go]] Maps 
+- [[https://tour.golang.org/moretypes/19][A Tour of Go]] Maps 
+- [[https://www.manning.com/books/learn-go][Learn Go]] by Nathan Youngman Ch. 16. The ever versatile map   

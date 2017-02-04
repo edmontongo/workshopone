@@ -23,6 +23,8 @@ range 3 ways
 	Map iteration random order
 	The iteration order over maps is not specified and is not guaranteed to be the same from one iteration to the next. If map entries that have not yet been reached are removed during iteration, the corresponding iteration values will not be produced. If map entries are created during iteration, that entry may be produced during the iteration or may be skipped. The choice may vary for each entry created and from one iteration to the next. If the map is nil, the number of iterations is 0.
 
+	Since Go 1 the runtime randomizes map iteration order, as programmers relied on the stable iteration order of the previous implementation. If you require a stable iteration order you must maintain a separate data structure that specifies that order. 
+
 	Range expression                          1st value          2nd value
 
 	array or slice  a  [n]E, *[n]E, or []E    index    i  int    a[i]       E

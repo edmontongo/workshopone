@@ -1,0 +1,112 @@
+Go Types
+
+
+
+Brett McKay
+
+* Declaring variables
+
+How to declare a variable:
+
+.play 03-types/declaration.go /BEGIN OMIT/,/END OMIT/
+
+What happens if you don't use a declared variable?
+
+* Go Strings
+
+- Are immutable
+- Generally created using double quotes
+- Raw strings are created with back ticks
+
+.play 03-types/string.go /BEGIN OMIT/,/END OMIT/
+
+* Go Bools
+
+*Values*
+.play 03-types/bool.go /BEGIN OMIT/,/END OMIT/
+
+What will happen?
+.play 03-types/conflict.go /BEGIN OMIT/,/END OMIT/
+
+
+* Type Systems
+
+- Strong
+- Weak
+
+What is the difference between the two?
+
+* Weak Typing
+
+- Types are determined at run time
+- Best match is used
+- Cause problems when no match is possible
+
+"1" + 1 = "11"
+"!" - 1 = problem
+
+* Strong Typing
+
+- Types are determined at compile
+- Types must match exactly
+- Compiler errors occur when types don't match
+
+"1" + 1 = error
+
+Is Go strongly or weakly typed?
+
+* Go Integers
+
+*Signed*
+
+- int8
+- int16
+- int32
+- int64
+
+*Unsigned*
+
+- uint8
+- uint16
+- uint32
+- uint64
+
+* Continued
+
+What will happen?
+.play 03-types/conflict-integer.go /BEGIN OMIT/,/END OMIT/
+
+* Increment Example
+
+What is the maximum number for int8?
+
+What happens if you add 1?
+
+* Continued
+
+.play 03-types/increment.go /BEGIN OMIT/,/END OMIT/
+
+* Overflow assingment
+
+What happens if you assign 128 to int8?
+
+.play 03-types/overflow.go /BEGIN OMIT/,/END OMIT/
+
+* Implementation specific
+
+- int either 32 bits or 64 bits
+- uint same size as int
+
+The size depends on the implementation of your system
+
+* Go Floats
+
+- float32
+- float64
+
+They exist and work how you would now expect
+
+* Assignment
+
+- What is the default value for each type?
+- What happens if you divide a float by 0?

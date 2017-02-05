@@ -15,6 +15,8 @@ go get -u golang.org/x/tools/cmd/present
 
 Run `present` from the workshopone folder.
 
+For syntax, see the [present documentation](https://godoc.org/golang.org/x/tools/present).
+
 ## License
 
 Workshop One (c) by:

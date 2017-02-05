@@ -1,0 +1,161 @@
+\documentclass[compress,aspectratio=1610]{beamer}
+
+\usepackage{fancyvrb}
+\usepackage{soul}
+
+% both bibstyle and verbose-note appear necessary for the footnote
+% citations to work correctly
+\usepackage[bibstyle=ieee,citestyle=verbose-note,firstinits=true]{biblatex}
+\addbibresource{pres.bib}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Helvetica Neue}
+\setmonofont{Courier}
+
+\renewcommand{\footnotesize}{\tiny} % use a sensible font size
+
+% -----------------------------------------------------------------------------
+% colours and themes
+\definecolor{macewan}{RGB}{139,35,50}
+
+% Beamer themes
+\useoutertheme[subsection=false,shadow,footline=institutetitle]{miniframes}
+\useinnertheme{default}
+
+\setbeamercolor*{lower separation line head}{bg=macewan} 
+\setbeamercolor*{normal text}{fg=black,bg=white} 
+\setbeamercolor*{alerted text}{fg=red} 
+\setbeamercolor*{example text}{fg=black} 
+\setbeamercolor*{structure}{fg=black} 
+
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!10} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+\setbeamercolor*{titlelike}{fg=macewan}
+
+% color schemes for boxes
+\beamerboxesdeclarecolorscheme{normal}{macewan}{macewan!15!averagebackgroundcolor}
+\beamerboxesdeclarecolorscheme{alert}{red}{red!15!averagebackgroundcolor}
+
+\setbeamercovered{transparent}
+
+% -----------------------------------------------------------------------------
+% fonts
+\usefonttheme{professionalfonts}
+\usefonttheme{serif}
+
+\newenvironment{fancyquote}%
+{\begin{quote}\makebox(0,0){\vspace{-0.05cm}\par\hspace{2.25cm}\includegraphics[scale=0.55]{quotes}}}%
+  {\end{quote}}
+
+\title[Welcome]{Welcome to Workshop One}
+\author[N. M. Boers]{Nicholas M. Boers}
+\date{February~22,~2017}
+\institute{\vspace{0.2em}
+  \includegraphics[height=0.85cm]{macewan}\\[0.25em]
+}
+\def\inserteventshort{Go Workshop}
+\def\insertevent{Go Workshop}
+
+% -----------------------------------------------------------------------------
+% custom headline
+\newlength{\logowidth}
+\setlength{\logowidth}{1.7cm}
+\newlength{\navwidth}
+\setlength{\navwidth}{\paperwidth}
+\addtolength{\navwidth}{-\logowidth}
+\addtolength{\navwidth}{-3pt}
+\addtolength{\logowidth}{-3pt}
+\setbeamertemplate{headline}
+{%
+  \vskip2pt\nobreak%
+  \begin{minipage}{\navwidth}%
+    \insertnavigation{\navwidth}%
+  \end{minipage}%
+  \nobreak\nobreak%
+  \begin{minipage}{\logowidth}%
+    \vskip2pt%
+    \includegraphics[width=\logowidth]{macewan}%
+  \end{minipage}%
+  % 
+  \linebreak[0]\vskip4pt%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}
+
+% -----------------------------------------------------------------------------
+% custom footline
+\setbeamercolor{footline}{fg=white,bg=macewan}
+\setbeamertemplate{footline}
+{%
+  \leavevmode%
+  \begin{beamercolorbox}{footline}%
+    \usebeamerfont{page number in head/foot}%
+    % 
+    \vskip2pt\hspace{2mm}%
+    \insertshorttitle, \insertshortauthor, \insertevent%
+    \hfill%
+    \insertframenumber\/ of \inserttotalframenumber%
+    \kern2mm\vskip2pt%
+  \end{beamercolorbox}%
+}
+
+% -----------------------------------------------------------------------------
+% custom title page
+\usetitlepagetemplate{
+  \vbox{}
+  \vfill
+  \begin{centering}
+    %% if unwanted
+    {\textcolor{macewan}{\Large{\inserttitle}}}\par
+    \ifx\insertsubtitle\@empty\else\vskip0.0em\vskip0.4em{\large{\structure{\textcolor{macewan}\insertsubtitle}}}\par\fi
+    \vskip2em\par
+    \insertauthor\par
+    \insertinstitute\par\vskip1.25em
+    \inserteventshort\par\vskip1.25em
+    \insertdate\par
+  \end{centering}
+  \vfill
+}
+
+\begin{document}
+
+\frame[plain,c]{
+  \titlepage
+}
+
+\frame[t]{
+  \frametitle{Outline}
+
+  \tableofcontents
+}
+
+\section{History/Motivation}
+\subsection*{}
+
+\begin{frame}[t]
+  \frametitle{}
+\end{frame}
+
+\section{What is Go?}
+\subsection*{}
+
+\begin{frame}[t]
+  \frametitle{}
+\end{frame}
+
+\section{What isn't Go?}
+\subsection*{}
+
+\begin{frame}[t]
+  \frametitle{}
+\end{frame}
+
+\section{Overview}
+\subsection*{}
+
+\begin{frame}[t]
+  \frametitle{}
+\end{frame}
+
+\end{document}

@@ -25,6 +25,7 @@ Workshop One (c) by:
 - Gerrit Renker
 - Łukasz Różycki
 - Matthias Stone
+- Jordan Torbiak
 - Nathan Youngman
 
 Workshop One is licensed under a

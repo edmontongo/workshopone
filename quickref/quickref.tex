@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage[landscape,letterpaper,left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage[type={CC},modifier={by-sa},version={4.0}]{doclicense}
+\usepackage[inline,shortlabels]{enumitem}
+\usepackage{fancyvrb}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{parskip}            % stop indenting
+\usepackage{url}
+
+\usepackage[compact]{titlesec}
+\titleformat{\section}{\normalfont\fontsize{12}{15}\bfseries}{\thesection}{0ex}{}
+\titlespacing{\section}{0pt}{0.5ex}{0.5ex}
+\titleformat{\subsection}{\normalfont\fontsize{9}{12}\bfseries}{\thesection}{0ex}{}
+\titlespacing{\subsection}{0pt}{0.5ex}{0.5ex}
+
+\usepackage{fancyhdr}
+\pagestyle{empty}
+
+\usepackage{xltxtra}
+\setmainfont[
+Ligatures = TeX,
+]{Helvetica Neue}
+\setmonofont[
+AutoFakeSlant,
+BoldItalicFeatures={FakeSlant},
+]{Courier}
+
+\usepackage{listings}
+\lstdefinelanguage{plain}{%
+  basicstyle=\scriptsize\ttfamily,
+  keywordstyle={},
+  identifierstyle={},
+  commentstyle={},
+  stringstyle={},
+  numbers=left,
+  %numberstyle={\tiny\color{gray}},
+  frame=single}
+\lstset{
+  belowskip=0.2em,
+  aboveskip=0.2em,
+  language=plain,
+  basicstyle=\scriptsize\ttfamily
+}
+
+\begin{document}
+
+\raggedright
+
+\begin{multicols*}{3}
+  \footnotesize
+
+  \begin{center}
+    {\Large{}\bfseries{}Go Reference Card}
+
+    Dr. Nicholas M. Boers\\
+    \url{boersn@macewan.ca}\\
+    \vspace{0.2em}
+    \includegraphics[height=0.85cm]{macewan}
+
+    \vspace{1em}
+    Last updated: \today
+  \end{center}
+
+  \filbreak
+  \section*{Introduction}
+
+  \subsection*{Synopsis}
+
+  \texttt{go command [arguments]}
+
+  \subsection*{Commands (basic)}
+
+  \begin{tabular}{p{0.5in}p{2.5in}}
+    \toprule
+    \textbf{Command} & \textbf{Description} \\
+    \midrule
+    \texttt{build} & compile packages and dependencies \\
+    \texttt{get} & download and install packages and dependencies \\
+    \texttt{run} & compile and run Go program \\
+    \bottomrule
+  \end{tabular}
+
+  \subsection*{Program execution}
+
+  Execution begins at the function \texttt{main} in package \texttt{main}:
+\begin{lstlisting}[numbers=none,escapechar=\%]
+package main
+
+func main() {
+    % \dots%
+}
+\end{lstlisting}
+
+  \filbreak
+  \section*{Variables}
+
+  \subsection*{Types (basic)}
+
+  \begin{tabular}{p{0.5in}p{2.5in}}
+    \toprule
+    \textbf{Type} & \textbf{Description} \\
+    \midrule
+    \texttt{string} & sequence of bytes (immutable)\newline{}
+                      \texttt{"\dots"}: interpreted string literal\newline{}
+                      \texttt{`\dots`}: raw string literal (no backslash escapes)\\
+    \texttt{bool} & Boolean value; either \texttt{true} or \texttt{false} \\
+    \texttt{int\textit{\underbar{x}}} & signed \texttt{\textit{\underbar{x}}}-bit integer where \texttt{\textit{\underbar{x}}} is 8, 16, 32, or 64 \\
+    \texttt{uint\textit{\underbar{x}}} & unsigned \texttt{\textit{\underbar{x}}}-bit integer \\
+    \texttt{float\textit{\underbar{x}}} & \texttt{\textit{\underbar{x}}}-bit float where \texttt{\textit{\underbar{x}}} is 32 or 64 \\
+    \bottomrule
+  \end{tabular}
+
+  \subsection*{Declarations}
+
+  \begin{tabular}{p{0.75in}p{2.25in}}
+    \toprule
+    \textbf{Syntax} & \textbf{Description} \\
+    \midrule
+    \texttt{var \textit{\underbar{id}} \textit{\underbar{type}}} & declare identifier \texttt{\underbar{id}} as \texttt{\underbar{type}} \\
+    \bottomrule
+  \end{tabular}
+
+  \filbreak
+  \section*{Functions}
+
+  \subsection*{Syntax (basic)}
+
+  \begin{lstlisting}[numbers=none,escapechar=\%]
+func %\textit{\underbar{name}}%(%\textit{\underbar{arguments}}%) %\textit{\underbar{return type}}% {
+    %\dots%
+}
+\end{lstlisting}
+
+  \filbreak
+  \section*{Standard library}
+
+  \filbreak
+  \section*{Control structures}
+
+  \filbreak
+  \section*{Pointers}
+
+  \filbreak
+  \section*{map}
+
+  \filbreak
+  \section*{slices}
+
+  \filbreak
+  \section*{struct}
+
+  \filbreak
+  \section*{User-defined types}
+
+  \filbreak
+  \section*{Methods}
+
+  \filbreak
+  \section*{Interfaces}
+
+  \filbreak
+  \section*{Error}
+
+  \parbox{\columnwidth}{
+    Sources:
+    \begin{itemize}[nosep]
+    \item \texttt{go --help}
+    \item \url{https://golang.org/ref/spec}
+    \end{itemize}
+
+    \vspace{\baselineskip}
+    \begin{center}
+      \doclicenseText\\[0.25\baselineskip]
+
+      \doclicenseImage
+    \end{center}
+  }
+\end{multicols*}
+
+\end{document}

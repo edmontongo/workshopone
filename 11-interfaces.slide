@@ -2,12 +2,50 @@ Interfaces in Go
 22 Feb 2017
 Tags: edmontongo, golang, workshop
 
-* Satisfying interfaces
+Brett McKay
 
-e.g. Stringer
+* What are interfaces?
 
-the interface keyword, method set
-usage
+Most collections are defined by the type of data they hold.
 
-mention interface{}
+Interrfaces are defined by the behaviour they demand.
+ 
+What do you think is meant by that?
 
+* Declare an interface
+
+.code 11-interfaces/interface.go /DECLARE_BEGIN OMIT/,/DECLARE_END OMIT/
+
+What behaviour does this interface demand?
+
+* Satisfying Interfaces
+.code 11-interfaces/interface.go /IMPLEMENT_BEGIN OMIT/,/IMPLEMENT_END OMIT/
+
+* Using Interfaces
+
+.play 11-interfaces/interface.go /USE_BEGIN OMIT/,/USE_END OMIT/
+
+* Empty Interface
+
+.code 11-interfaces/interface.go /EMPTY_BEGIN OMIT/,/EMPTY_END OMIT/
+
+What does a type need to implement in order to satisfy the above interface?
+
+Can you think of a reason to use this interface?
+
+* Documention and Interfaces
+
+An example of something that uses an interface
+.link https://golang.org/pkg/net/http/#Client.Post Post
+
+Definiton of
+.link https://golang.org/pkg/io/#Reader Reader
+
+Things that implement Reader
+.link https://golang.org/pkg/bytes/#Buffer.Read ByteBuffer
+.link https://golang.org/pkg/os/#File.Read File
+
+* Exercise
+
+Have them create something that implements the Reader interface and post that thing to a server.
+Can you piggy back on what Mathias is writing?

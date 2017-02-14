@@ -2,13 +2,88 @@ Defined types and structs in Go
 22 Feb 2017
 Tags: edmontongo, golang, workshop
 
+
 * Defined types
 
-type keyword. defining a new type
+Types help us organize data.
 
-* Structs
+- give more specific meaning to basic types:
 
-syntax
-nesting structs
+.play -edit 09-struct/conflation/main.go /START BASIC OMIT/,/END BASIC OMIT$/
 
-pass by value
+- create aggregate types:
+
+.play -edit 09-struct/conflation/main.go /START STRUCT OMIT/,/END STRUCT OMIT$/
+
+
+* Defining a new type
+
+A type declaration creates a new named type with the given underlying type. The new type is not an alias of the underlying type.
+
+The new type's operations are determined by the underlying type.
+
+.play -edit 09-struct/definition/main.go /START OMIT/,/END OMIT$/
+
+
+* Explicit type conversions
+
+Conversions are possible between:
+
+- same underlying type
+- pointers to same underlying type
+- numeric types
+- string and byte or rune slices
+
+.play -edit 09-struct/conversion/main.go /START OMIT/,/END OMIT$/
+
+* Struct literals
+
+- Fields in struct literals can be given positionally or with names.
+- Struct literals are addressable using &.
+- Can be nested.
+
+.play -edit 09-struct/literals/main.go /START OMIT/,/END OMIT$/
+
+
+
+
+* Zero values
+
+Missing fields are initialized to zero. If fields are given positionally, they all must be given.
+
+.play -edit 09-struct/missing/main.go /START OMIT/,/END OMIT$/
+
+Struct literals are especially useful because gophers take care to have useful zero values. Many types can be instantiated using literals instead of constructors.
+
+.play -edit 09-struct/zero/main.go /START OMIT/,/END OMIT$/
+
+
+* Structs are passed by value
+
+A shallow copy is made. To mutate a struct argument, pass a pointer to it. The dot operator automatically dereferences pointers.
+
+.play -edit 09-struct/pass/main.go /START OMIT/,/END OMIT$/
+
+
+* Comparing structs
+
+Structs of the same type are comparable if all their fields are comparable.
+
+.play -edit 09-struct/cmp/main.go /START OMIT/,/END OMIT$/
+
+
+* Nesting structs
+
+As a field:
+
+.play -edit 09-struct/nest/main.go /START OMIT/,/END OMIT$/
+
+Including another struct's fields using embedding:
+
+.play -edit 09-struct/embed/main.go /START OMIT/,/END OMIT$/
+
+
+* Exercises
+
+- Can you use a struct without defining a type? When would this be useful?
+- Can you make a struct type that contains itself somehow?

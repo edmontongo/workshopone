@@ -9,7 +9,7 @@ func main() {
 	type Meters float64
 	alice := int(2)
 	bob := Meters(1.73)
-	// fmt.Println(alice + bob) // mismatched types
+	fmt.Println(alice + bob) // mismatched types
 
 	b := []byte{'h', 'i'}
 	s := string(b)

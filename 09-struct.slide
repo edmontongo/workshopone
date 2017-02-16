@@ -7,22 +7,31 @@ Tags: edmontongo, golang, workshop
 
 Types help us organize data.
 
-- give more specific meaning to basic types:
 
-.play -edit 09-struct/conflation/main.go /START BASIC OMIT/,/END BASIC OMIT$/
+* Adding meaning to a basic type
 
-- create aggregate types:
-
-.play -edit 09-struct/conflation/main.go /START STRUCT OMIT/,/END STRUCT OMIT$/
+.play -edit 09-struct/conflation.go /START OMIT/,/END OMIT$/
 
 
-* Defining a new type
+* Enumerated constants
 
-A type declaration creates a new named type with the given underlying type. The new type is not an alias of the underlying type.
+.play -edit 09-struct/enum.go /START OMIT/,/END OMIT$/
 
-The new type's operations are determined by the underlying type.
 
-.play -edit 09-struct/definition/main.go /START OMIT/,/END OMIT$/
+* Composite types
+
+.play -edit 09-struct/composite.go /START OMIT/,/END OMIT$/
+
+
+* Type declarations
+
+- Create a new type, not an alias.
+
+.code 09-struct/conflation.go /START DISTINCT OMIT/,/END DISTINCT OMIT/
+
+- Operations (+, *, [], etc) of the new type are determined by the underlying type.
+
+.play -edit 09-struct/definition.go /START OMIT/,/END OMIT$/
 
 
 * Explicit type conversions
@@ -34,7 +43,7 @@ Conversions are possible between:
 - numeric types
 - string and byte or rune slices
 
-.play -edit 09-struct/conversion/main.go /START OMIT/,/END OMIT$/
+.play -edit 09-struct/conversion.go /START OMIT/,/END OMIT$/
 
 * Struct literals
 
@@ -42,45 +51,43 @@ Conversions are possible between:
 - Struct literals are addressable using &.
 - Can be nested.
 
-.play -edit 09-struct/literals/main.go /START OMIT/,/END OMIT$/
-
-
+.play -edit 09-struct/literals.go /START OMIT/,/END OMIT$/
 
 
 * Zero values
 
 Missing fields are initialized to zero. If fields are given positionally, they all must be given.
 
-.play -edit 09-struct/missing/main.go /START OMIT/,/END OMIT$/
+.play -edit 09-struct/missing.go /START OMIT/,/END OMIT$/
 
-Struct literals are especially useful because gophers take care to have useful zero values. Many types can be instantiated using literals instead of constructors.
+Useful zero values:
 
-.play -edit 09-struct/zero/main.go /START OMIT/,/END OMIT$/
+.play -edit 09-struct/zero.go /START OMIT/,/END OMIT$/
 
 
 * Structs are passed by value
 
 A shallow copy is made. To mutate a struct argument, pass a pointer to it. The dot operator automatically dereferences pointers.
 
-.play -edit 09-struct/pass/main.go /START OMIT/,/END OMIT$/
+.play -edit 09-struct/pass.go /START OMIT/,/END OMIT$/
 
 
 * Comparing structs
 
 Structs of the same type are comparable if all their fields are comparable.
 
-.play -edit 09-struct/cmp/main.go /START OMIT/,/END OMIT$/
+.play -edit 09-struct/cmp.go /START OMIT/,/END OMIT$/
 
 
 * Nesting structs
 
 As a field:
 
-.play -edit 09-struct/nest/main.go /START OMIT/,/END OMIT$/
+.play -edit 09-struct/nest.go /START OMIT/,/END OMIT$/
 
 Including another struct's fields using embedding:
 
-.play -edit 09-struct/embed/main.go /START OMIT/,/END OMIT$/
+.play -edit 09-struct/embed.go /START OMIT/,/END OMIT$/
 
 
 * Exercises

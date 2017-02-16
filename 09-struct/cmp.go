@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main() { 
+func main() {
 	// START OMIT
 	// Comparable
 	type Circle struct {
@@ -21,8 +21,6 @@ func main() {
 	}
 	fruits := Group{name: "fruits", members: []string{"apple", "pear"}}
 	rocks := Group{name: "rocks", members: []string{"basalt", "granite"}}
-	// fmt.Println("fruits == rocks: ", fruits == rocks) // invalid operation
+	fmt.Println("fruits == rocks: ", fruits == rocks) // invalid operation
 	// END OMIT
-	_ = fruits
-	_ = rocks
 }

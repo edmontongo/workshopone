@@ -7,13 +7,15 @@ import (
 
 var _ bytes.Buffer
 
-func main() { 
+func main() {
 	// START OMIT
-	type Circle struct {X, Y, Radius int}
-	small := Circle{X: 1, Y: 1, Radius: 1}
+	type Circle struct {
+		X, Y, Radius int
+	}
+	small := Circle{X: 1, Y: 1, Radius: 1} // HL
 	fmt.Printf("%#v\n", small)
 
-	large := &Circle{2, 2, 2}
+	large := &Circle{2, 2, 2} // HL
 	fmt.Printf("%#v\n", large)
 
 	type CircleGroup struct {

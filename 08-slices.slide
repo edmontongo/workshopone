@@ -3,23 +3,101 @@ Slices in Go
 Tags: edmontongo, golang, workshop
 
 Nathan Youngman
+gopher@nathany.com
 @nathany
 
-* Slices
+* Introduction
 
-composite literal
+# Slices are similar in purpose to lists in Python.
 
-iteration
-two values
-blank identifier
+* Declaration
 
-slicing
-default indices
+Syntax: square brackets followed by a type.
 
-append
+.play -edit 08-slices/var.go /BEGIN OMIT/,/END OMIT/
 
-link to gotchas:
-capacity
-third index
-backing arrays
-make
+* Composite literals
+
+.play -edit 08-slices/literal.go /BEGIN OMIT/,/END OMIT/
+
+Note: the trailing comma.
+
+* Indexing
+
+.play -edit 08-slices/index.go /BEGIN OMIT/,/END OMIT/
+
+* Iteration
+
+* The humble for loop
+
+.play -edit 08-slices/for.go /BEGIN OMIT/,/END OMIT/
+
+A built-in function: `len`.
+
+* Range keyword
+
+.play -edit 08-slices/range.go /BEGIN OMIT/,/END OMIT/
+
+* Range keyword, part 2
+
+.play -edit 08-slices/range2.go /BEGIN OMIT/,/END OMIT/
+
+The index and the element.
+
+* Aside: Unused variables
+
+.play -edit 08-slices/cruft.go /BEGIN OMIT/,/END OMIT/
+
+"cruft declared and not used"
+
+* Aside: Blank identifier
+
+.play -edit 08-slices/crufty.go /BEGIN OMIT/,/END OMIT/
+
+Never do this.
+
+* Range keyword, part 3
+
+.play -edit 08-slices/range3.go /BEGIN OMIT/,/END OMIT/
+
+Use the blank identifier.
+
+* Slicing
+
+* Slicing syntax
+
+.play -edit 08-slices/gulp.go /BEGIN OMIT/,/END OMIT/
+
+* Default indices
+
+.play -edit 08-slices/gulp2.go /BEGIN OMIT/,/END OMIT/
+
+No animals were harmed.
+
+* Append
+
+* Appending elements
+
+.play -edit 08-slices/append.go /BEGIN OMIT/,/END OMIT/
+
+A built-in function: `append`.
+
+* Append gotcha
+
+.play -edit 08-slices/append2.go /BEGIN OMIT/,/END OMIT/
+
+Not guaranteed.
+
+* Mutation happens
+
+.play -edit 08-slices/append3.go /BEGIN OMIT/,/END OMIT/
+
+* Exercise
+
+
+
+# not covered:
+# capacity
+# third index
+# backing arrays
+# make

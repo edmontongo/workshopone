@@ -3,20 +3,68 @@ Basic of Go
 Tags: edmontongo, golang, workshop
 
 Nathan Youngman
+gopher@nathany.com
 @nathany
 
-* Basics of Go
+* The Go Playground
 
-Playground
+.link https://play.golang.org
 
-curly bracket language { }
-no semicolons;
-gofmt is a thing
+.play 02-basics/playground.go
 
-package, import, main func
+Click *Run*.
 
-fmt.Println("Hello world")
+* Packages
 
-* exercise
+.play -edit 02-basics/playground.go HLpackage
 
-say hello to your neighbour
+* Import
+
+.play -edit 02-basics/playground.go HLimport
+
+* fmt
+
+.play -edit 02-basics/playground.go HLfmt
+
+_Package_fmt_implements_formatted_I/O..._
+
+.link https://golang.org/pkg/fmt
+
+* Function declaration
+
+.play -edit 02-basics/playground.go HLfunc
+
+- Curly braces `{` `}`
+- Compiler ignores whitespace
+- The `main` function
+
+* Function call
+
+.play -edit 02-basics/playground.go HLprint
+
+- Package name dot function name
+- Semicolons not required;
+
+* Format
+
+Click *Format* to pretty print your code.
+
+Based on the `gofmt` tool.
+
+* Imports
+
+Click *Format* with *Imports* checked to also update the package imports.
+
+.play -edit 02-basics/shout.go /BEGIN OMIT/,/END OMIT/
+
+Based on the `goimports` tool.
+
+* Share
+
+Click *Share* to reveal a link to the playground code at this moment.
+
+* Exercise
+
+Ask your neighbour's name and modify the program to say hello to them.
+
+Optional: Share your program online with hashtag `#MacEwan` `#golang`.

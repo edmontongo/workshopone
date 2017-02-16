@@ -20,6 +20,7 @@ For syntax, see the [present documentation](https://godoc.org/golang.org/x/tools
 ## License
 
 Workshop One (c) by:
+- James Bell
 - Nicholas Boers
 - Brett McKay
 - Gerrit Renker

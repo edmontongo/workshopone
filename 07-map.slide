@@ -23,21 +23,34 @@ Lukasz Rozycki
 - struct or array containing above
 - Not slice, map, nor function
 
-* Creating a map
-- composite literal
- TODO example
+* Creating a map 
+- composite literal (note trailing comma)
+.play 07-map/compositeliteral.go /START/,/END/
 - empty map
- TODO example
-- types in declaration vs type in literal
- TODO example
+.play 07-map/emptyliteral.go /START/,/END/
+
+#* Creating a map - skipping types in literal
+# TODO example
 
 * Lookup
 - index expression
- TODO someMap[key]
+.play 07-map/lookup.go /START/,/END/
 - zero value
- TODO example
+.play 07-map/zerovalue.go /START/,/END/
+- what about Baby??
+.play 07-map/commaok1.go /START/,/END/
+
+* Lookup
 - "comma ok" idiom
- TODO example
+.play 07-map/commaok2.go /START/,/END/
+- concise notation
+.play 07-map/commaok3.go /START/,/END/
+
+* Lookup
+- ignore age
+.play 07-map/commaok4.go /START/,/END/
+- why underscore?
+.play 07-map/commaok5.go /START/,/END/
 
 * Addition and deletion
 - index expression

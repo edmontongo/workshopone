@@ -14,8 +14,11 @@
 //
 package main
 
-import "io"
+import (
+	"fmt"
+	"net/http"
+)
 
-func writeDocumentation(wr io.Writer) {
-	wr.Write([]byte("Documentation!"))
+func writeDocumentation(wr http.ResponseWriter, req *http.Request) {
+	fmt.Fprintln(wr, "Documentation!")
 }

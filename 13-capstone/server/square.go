@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
 	"math/rand"
 )
 
@@ -29,7 +30,8 @@ func (sp SquareProblem) Validate(r io.Reader) bool {
 	b := make([]byte, 32)
 	n, err := r.Read(b)
 	switch {
-	case err != nil:
+	case err != io.EOF:
+		log.Println("Failed to parse user's number: ", err.Error())
 	case n > 16:
 	case string(b[0:n]) != fmt.Sprint(sp.square*sp.square):
 	default:

@@ -2,11 +2,11 @@ SHELL=/bin/bash
 
 .PHONY: all clean
 
-all: pres.pdf
+all: pres_slides.pdf pres_notes.pdf
 
-pres.pdf: pres.tex pres.bib
-	latexmk -xelatex -quiet pres || { cat pres.log; false; }
+%.pdf: %.tex pres.tex pres.bib
+	latexmk -xelatex -quiet "$*" || { cat "$*.log"; false; }
 
 clean:
 	latexmk -C
-	$(RM) pres.{bbl,bib.bak,nav,run.xml,snm,vrb}
+	$(RM) pres{,_notes,_slides}.{bbl,bib.bak,nav,run.xml,snm,vrb}

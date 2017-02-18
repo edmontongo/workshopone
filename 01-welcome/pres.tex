@@ -1,7 +1,24 @@
-\documentclass[compress,aspectratio=1610]{beamer}
+\usepackage{colortbl}
+\usepackage{rotating}
 
-\usepackage{fancyvrb}
-\usepackage{soul}
+\usepackage{listings}
+\usepackage{listings-golang}
+\definecolor{keywords}{RGB}{0,0,120}
+\definecolor{identifiers}{RGB}{120,0,0}
+\definecolor{comments}{RGB}{0,120,0}
+\lstset{language=bash,
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  commentstyle=\color{comments}\emph,
+  frame=none, % single
+  identifierstyle=\color{identifiers},
+  keywordstyle=\color{keywords},
+  numbers=none, % left
+  numbersep=5pt,
+  numberstyle=\footnotesize,
+  stepnumber=1,
+  stringstyle=\ttfamily,
+}
 
 % both bibstyle and verbose-note appear necessary for the footnote
 % citations to work correctly
@@ -13,7 +30,7 @@
 \setmainfont{Helvetica Neue}
 \setmonofont{Courier}
 
-\renewcommand{\footnotesize}{\tiny} % use a sensible font size
+\newcommand{\fullvfill}{\vskip0pt plus 1filll}
 
 % -----------------------------------------------------------------------------
 % colours and themes
@@ -23,14 +40,14 @@
 \useoutertheme[subsection=false,shadow,footline=institutetitle]{miniframes}
 \useinnertheme{default}
 
-\setbeamercolor*{lower separation line head}{bg=macewan} 
-\setbeamercolor*{normal text}{fg=black,bg=white} 
-\setbeamercolor*{alerted text}{fg=red} 
-\setbeamercolor*{example text}{fg=black} 
-\setbeamercolor*{structure}{fg=black} 
+\setbeamercolor*{lower separation line head}{bg=macewan}
+\setbeamercolor*{normal text}{fg=black,bg=white}
+\setbeamercolor*{alerted text}{fg=red}
+\setbeamercolor*{example text}{fg=black}
+\setbeamercolor*{structure}{fg=black}
 
-\setbeamercolor*{palette tertiary}{fg=black,bg=black!10} 
-\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!10}
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10}
 \setbeamercolor*{titlelike}{fg=macewan}
 
 % color schemes for boxes
@@ -48,11 +65,12 @@
 {\begin{quote}\makebox(0,0){\vspace{-0.05cm}\par\hspace{2.25cm}\includegraphics[scale=0.55]{quotes}}}%
   {\end{quote}}
 
-\title[Welcome]{Welcome to Workshop One}
+\title[Welcome]{Welcome to the\\[0.25em]
+  1$^{\tiny{}\rm{st}}$ Edmonton Go Workshop}
 \author[N. M. Boers]{Nicholas M. Boers}
 \date{February~22,~2017}
 \institute{\vspace{0.2em}
-  \includegraphics[height=0.85cm]{macewan}\\[0.25em]
+  \includegraphics[height=1.25cm]{macewan}\\[0.25em]
 }
 \def\inserteventshort{Go Workshop}
 \def\insertevent{Go Workshop}
@@ -70,6 +88,7 @@
 {%
   \vskip2pt\nobreak%
   \begin{minipage}{\navwidth}%
+    \fontsize{8pt}{9.2}\selectfont{}%
     \insertnavigation{\navwidth}%
   \end{minipage}%
   \nobreak\nobreak%
@@ -77,7 +96,7 @@
     \vskip2pt%
     \includegraphics[width=\logowidth]{macewan}%
   \end{minipage}%
-  % 
+  %
   \linebreak[0]\vskip4pt%
   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
   \end{beamercolorbox}
@@ -91,7 +110,7 @@
   \leavevmode%
   \begin{beamercolorbox}{footline}%
     \usebeamerfont{page number in head/foot}%
-    % 
+    %
     \vskip2pt\hspace{2mm}%
     \insertshorttitle, \insertshortauthor, \insertevent%
     \hfill%
@@ -130,32 +149,489 @@
   \tableofcontents
 }
 
-\section{History/Motivation}
+\section{Introduction}
 \subsection*{}
 
 \begin{frame}[t]
-  \frametitle{}
+  \frametitle{Introduction}
+
+  The Go project is less than 10 years old, but it builds on decades of prior work.
+
+  \vspace{\baselineskip}
+  Let's\dots
+  \begin{itemize}
+  \item briefly explore the history
+  \item generally describe the present
+  \end{itemize}
+
+  \fullvfill
+  \hfill
+  \begin{minipage}{0.85\linewidth}
+    \raggedright
+    \footnotesize
+    Two sources were used extensively in creating these slides:\\
+    (1)~\fullcite{Donovan15}\\
+    (2)~\fullcite{GoFAQ}
+  \end{minipage}
+\end{frame}
+
+\subsection{Motivation}
+
+\begin{frame}[t]
+  \frametitle{Motivation}
+
+  At Google\dots
+  \begin{itemize}
+  \item explosion of complexity
+  \item desire for simplicity
+  \item shortcomings in existing languages
+    \begin{itemize}
+    \item concurrency support
+    \item build times
+    \end{itemize}
+  \end{itemize}
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item explosion of complexity
+      \begin{itemize}
+      \item led to frustration with several software systems
+      \item ``complexity is multiplicative'': fixing a problem $\rightarrow$ adding complexity (in one area) $\rightarrow$ adding complexity in other parts
+      \item ``only through simplicity of design can a system remain stable, secure, and coherent as it grows''
+      \end{itemize}
+    \item (perceived) shortcomings in existing languages
+      \begin{itemize}
+      \item lead to the creation of new languages
+      \end{itemize}
+    \end{itemize}
+  }
+\end{frame}
+
+\subsection{Conception}
+
+\begin{frame}[t]
+  \frametitle{Conception $\rightarrow$ birth}
+
+  \vfill
+
+  \begin{center}
+    \huge
+    Sept.~2007 $\rightarrow$ Nov.~2009
+  \end{center}
+
+  \vfill
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item ``conceived in September 2007 by Robert Griesemer, Rob Pike, and Ken Thompson'' (all at Google)
+      \begin{itemize}
+      \item Go Project includes ``a cultural agenda of radical simplicity''
+      \end{itemize}
+    \item ``announced in November 2009''
+    \end{itemize}
+
+    From \url{https://talks.golang.org/2015/gophercon-goevolution.slide}:
+
+    \begin{itemize}
+    \item ``Starting point: C, fix some obvious flaws, remove crud, add a few few missing features'' (e-mail: Sept. 23, 2007)
+    \end{itemize}
+  }
+\end{frame}
+
+\subsection{Ancestors}
+
+\begin{frame}[t]
+  \frametitle{Ancestors}
+
+  Go builds on other languages:
+  \begin{itemize}
+  \item borrows good ideas
+  \item avoids features that lead to complexity/unreliability
+  \end{itemize}
+
+  \vspace{\baselineskip}
+  Let's look at some examples\dots
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item borrows good ideas
+    \item avoids features that lead to overly complex and unreliable code
+    \end{itemize}
+  }
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{Ancestor: C}
+
+  \begin{tabular}{ll}
+    \cellcolor{macewan}
+    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}C} &
+\begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=c]
+// basic data types
+float fahrenheit, celsius;
+
+// expression syntax
+fahrenheit = 22;
+celsius = (fahrenheit - 32) * 5.0 / 9.0;
+
+// control-flow statements
+if (celsius < 0) {
+    printf("it's freezing!\n");
+}
+\end{lstlisting} \\ & \\
+    \cellcolor{macewan}
+    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}Go} &
+\begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=Golang]
+var fahrenheit, celsius float32
+
+fahrenheit = 22
+celsius = (fahrenheit - 32) * 5.0 / 9.0
+
+if celsius < 0 {
+    fmt.Printf("it's freezing!\n")
+}
+\end{lstlisting}
+  \end{tabular}
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item shown: basic data types, expression syntax, control-flow statements
+    \item not shown: call-by-value, pointers, compilation to efficient machine code
+    \end{itemize}
+  }
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{Ancestor: \textit{Wirth} languages (1 of 2)}
+
+  \begin{tabular}{ll}
+    \cellcolor{macewan}
+    \rotatebox{90}{\bfseries\color{white}\hspace{-7mm}Pascal} &
+\begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language={Pascal}]
+unit amazinglibrary;
+(* interface & implementation both exist in one file *)
+
+interface
+    (* exported variables and functions *)
+
+implementation
+    (* definitions *)
+\end{lstlisting} \\ & \\
+    \cellcolor{macewan}
+    \rotatebox{90}{\bfseries\color{white}\hspace{-2mm}Go} &
+\begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=Golang]
+package amazinglibrary
+
+// interface & implementation both exist in one file
+\end{lstlisting}
+  \end{tabular}
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item package concept, interface \& implementation in one file
+    \end{itemize}
+  }
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{Ancestor: \textit{Wirth} languages (2 of 2)}
+
+  \begin{tabular}{ll}
+    \cellcolor{macewan}
+    \rotatebox{90}{\bfseries\color{white}\hspace{-7mm}Pascal} &
+\begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language={Pascal}]
+program someprogram;
+
+(* programs can include a unit using "uses"... *)
+uses
+    (* units used... *)
+    amazinglibrary;
+\end{lstlisting} \\ & \\
+    \cellcolor{macewan}
+    \rotatebox{90}{\bfseries\color{white}\hspace{-2mm}Go} &
+\begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=Golang]
+package main
+
+// packages can include packages using "import"...
+import (
+    // packages used...
+    "amazinglibrary"
+)
+\end{lstlisting}
+  \end{tabular}
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item syntax for packages, imports, declarations
+    \end{itemize}
+  }
+\end{frame}
+
+\begin{frame}[t,fragile]
+  \frametitle{Ancestor: Oberon-2}
+
+  \begin{tabular}{ll}
+    \cellcolor{macewan}
+    \rotatebox{90}{\bfseries\color{white}\hspace{-10mm}Oberon-2} &
+\begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language={Oberon-2}]
+(* syntax for method declaration *)
+PROCEDURE (t: Tree) Lookup* (name: ARRAY OF CHAR): Tree;
+    VAR p: Tree;
+BEGIN p := t;
+    WHILE (p # NIL) & (name # p.name^) DO
+        IF name < p.name^ THEN p := p.left ELSE p := p.right END
+    END;
+    RETURN p
+END Lookup;
+\end{lstlisting} \\ & \\
+    \cellcolor{macewan}
+    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}Go} &
+\begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=Golang]
+func (t *Node) Lookup(name string) Tree {
+    var p Tree
+    p = t
+    for p != nil && name != p.name {
+        if name < p.name { p = p.left } else { p = p.right }
+    }
+    return p
+}
+\end{lstlisting}
+  \end{tabular}
+
+  \fullvfill
+  \hfill
+  \begin{minipage}{1\linewidth}
+    \raggedright
+    \footnotesize
+    Source:
+    \fullcite{GoEvolution}
+  \end{minipage}
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item syntax for method declarations
+      \begin{itemize}
+      \item originally from \textit{Object} Oberon
+      \end{itemize}
+    \end{itemize}
+  }
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Ancestors: Summary}
+
+  \includegraphics[width=\linewidth]{ancestors}
+
+  \fullvfill
+  \hfill
+  \begin{minipage}{0.85\linewidth}
+    \raggedright
+    \footnotesize
+    Adapted from:
+    \fullcite{Donovan15}
+  \end{minipage}
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item CSP (Communicating Sequential Processes): a formal language for describing fundamental concepts of concurrency
+      \begin{itemize}
+      \item communication and synchronization using channels
+      \end{itemize}
+    \end{itemize}
+  }
 \end{frame}
 
 \section{What is Go?}
 \subsection*{}
 
 \begin{frame}[t]
-  \frametitle{}
+  \frametitle{Go is a \underbar{project}}
+
+  The project consists of\dots
+  \begin{enumerate}
+  \item language
+  \item standard libraries
+  \item tools
+  \end{enumerate}
+
+  \vspace{\baselineskip}
+
+  Moreover, it is\dots
+  \begin{itemize}
+  \item open source
+  \item portable
+  \item general-purpose
+  \end{itemize}
+
+  \note{
+    \begin{itemize}
+    \item open source \underbar{project}
+      \begin{itemize}
+      \item compiler \& libraries \& tools (code): BSD license
+      \item much of the non-code: Creative Commons Attribution 3.0 License
+      \end{itemize}
+    \item portable
+      \begin{itemize}
+      \item for 1.8: binaries for\dots
+        \begin{itemize}
+        \item macOS
+        \item Linux: 386, amd64, armv6l, ppc64le, s390x
+        \item Windows: 386, amd64
+        \item FreeBSD: 386, amd64
+        \end{itemize}
+      \item applications, too: cross-compile for these architectures
+      \end{itemize}
+    \item general purpose
+      \begin{itemize}
+      \item well-suited for building infrastructure, e.g., networked servers, web services
+      \item well-suited for ``tools'' for programmers
+      \item various domains: graphics, mobile applications, machine learning
+      \end{itemize}
+    \end{itemize}
+  }
 \end{frame}
 
-\section{What isn't Go?}
-\subsection*{}
+\subsection{Language}
 
 \begin{frame}[t]
-  \frametitle{}
+  \frametitle{Go: Language}
+
+  The goals for the language include:
+
+  \begin{itemize}
+  \item expressive
+  \item efficient compilation
+  \item efficient execution
+  \item effective for writing reliable \& robust programs
+  \end{itemize}
 \end{frame}
 
-\section{Overview}
-\subsection*{}
+\begin{frame}[t]
+  \frametitle{Go: Language: Features}
+
+  Some of the features include:
+
+  \begin{itemize}
+  \item concurrency
+  \item packages
+  \item garbage collection
+  \item strong type system
+  \item system call interface
+  \item object-orientation programming
+  \end{itemize}
+
+  \note{
+    From Donovan15:
+
+    \begin{itemize}
+    \item concurrency: new/efficient facilities (based on CSP)
+      \begin{itemize}
+      \item variable-sized stacks in lightweight threads
+      \end{itemize}
+    \item garbage collection: automatic memory management
+    \item strong type system
+      \begin{itemize}
+      \item not terribly complex
+      \item balanced expressiveness with safety
+      \item first-class functions: can be arguments, return values, \dots; treated as other values
+      \item lexical scope: static scoping: think blocks\dots (like C)
+      \item immutable strings (often encoded as UTF-8)
+      \end{itemize}
+    \item system call interface
+      \begin{itemize}
+      \item portability?
+      \end{itemize}
+    \item OOP:
+      \begin{itemize}
+      \item selected features from OOP
+      \item unusually flexible
+      \end{itemize}
+    \end{itemize}
+  }
+\end{frame}
+
+\subsection{Tools}
 
 \begin{frame}[t]
-  \frametitle{}
+  \frametitle{Go: Tools}
+
+\end{frame}
+
+\subsection{Standard libraries}
+
+\begin{frame}[t]
+  \frametitle{Go: Standard libraries}
+
+\end{frame}
+
+\section{Workshop}
+\subsection{Schedule}
+
+\begin{frame}[t]
+  \frametitle{Schedule: Morning}
+
+  Schedule for the morning:
+
+  \begin{description}
+  \item[9:00] Welcome and opening remarks
+  \item[9:30] Basics of Go
+  \item[9:55] Types
+  \item[10:20] Functions \& standard library basics
+  \item[10:45] Control structures
+  \item[11:10] Pointers
+  \item[11:25] Exercises and questions
+  \end{description}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Schedule: Afternoon}
+
+  Schedule for the afternoon:
+
+  \begin{description}
+  \item[1:00] Maps
+  \item[1:25] Slices
+  \item[1:50] User-defined types \& structs
+  \item[2:15] Methods
+  \item[2:40] Interfaces
+  \item[3:05] Error
+  \item[4:00] Comprehensive exercises
+  \item[5:00] Closing remarks
+  \end{description}
+\end{frame}
+
+\subsection{Presenters and mentors}
+
+\begin{frame}[t]
+  \frametitle{Presenters and mentors}
+
+  List of presenters/mentors:
+
+  \begin{itemize}
+  \item Brett McKay
+  \item Gerrit Renker
+  \item James Bell
+  \item Jordan Torbiak
+  \item Matthias Stone
+  \item Nathan Youngman
+  \item Łukasz Różycki
+  \end{itemize}
 \end{frame}
 
 \end{document}

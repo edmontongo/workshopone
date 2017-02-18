@@ -58,8 +58,12 @@ BoldItalicFeatures={FakeSlant},
 
     Dr. Nicholas M. Boers\\
     \url{boersn@macewan.ca}\\
-    \vspace{0.2em}
-    \includegraphics[height=0.85cm]{macewan}
+    \IfFileExists{macewan.pdf}{
+      \vspace{0.2em}
+      \includegraphics[height=0.85cm]{macewan}
+    }{
+      MacEwan University
+    }
 
     \vspace{1em}
     Last updated: \today

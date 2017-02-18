@@ -69,8 +69,13 @@
   1$^{\tiny{}\rm{st}}$ Edmonton Go Workshop}
 \author[N. M. Boers]{Nicholas M. Boers}
 \date{February~22,~2017}
-\institute{\vspace{0.2em}
-  \includegraphics[height=1.25cm]{macewan}\\[0.25em]
+\institute{
+  \IfFileExists{macewan.pdf}{
+    \vspace{0.2em}
+    \includegraphics[height=1.25cm]{macewan}\\[0.25em]
+  }{
+    MacEwan University
+  }
 }
 \def\inserteventshort{Go Workshop}
 \def\insertevent{Go Workshop}
@@ -92,10 +97,12 @@
     \insertnavigation{\navwidth}%
   \end{minipage}%
   \nobreak\nobreak%
-  \begin{minipage}{\logowidth}%
-    \vskip2pt%
-    \includegraphics[width=\logowidth]{macewan}%
-  \end{minipage}%
+  \IfFileExists{macewan.pdf}{%
+    \begin{minipage}{\logowidth}%
+      \vskip2pt%
+      \includegraphics[width=\logowidth]{macewan}%
+    \end{minipage}%
+  }{}%
   %
   \linebreak[0]\vskip4pt%
   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}

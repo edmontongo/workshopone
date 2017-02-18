@@ -10,7 +10,9 @@ james@bellstone.ca
 
 .play 10-methods/printPerson.go /BEGIN OMIT/,/END OMIT/
 
-* Review: User-defined types
+* Review: Defined types
+
+- These are currently called "Named Types" but will likely be called "Defined Types" in Go 1.9+.
 
 .play 10-methods/userType.go /BEGIN OMIT/,/END OMIT/
 

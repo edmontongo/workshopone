@@ -22,6 +22,9 @@ james@bellstone.ca
 
 * Methods can change data
 
+# This code won't run because it doesn't have a pointer receiver.
+# The point of this slide is to show a common error when forgetting to use a pointer receiver, which will be explained in the next slide.
+
 .play 10-methods/incrementor.go /BEGIN OMIT/,/END OMIT/
 
 * Methods can change data by using pointer receivers

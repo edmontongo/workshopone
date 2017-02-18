@@ -46,6 +46,8 @@ james@bellstone.ca
 - As with functions and variables, capitalized methods can be accessed from other packages.
 - The incrementor's `int` is private, but all of the methods and the type are public.
 
+.play 10-methods/incrementorFixed.go /type/,/}/
+
 .play 10-methods/incrementorFixed.go /func main/,/END OMIT/
 
 * Chaining calls

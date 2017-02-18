@@ -24,14 +24,14 @@ james@bellstone.ca
 
 .play 10-methods/incrementor.go /BEGIN OMIT/,/END OMIT/
 
-* Methods can change data by using pointers
+* Methods can change data by using pointer receivers
 
 - In order to change data, the method must act on a pointer.
 - The only necessary change to the `Incrementor` is to make the `Increment` function take a pointer.
 
 .play 10-methods/incrementorFixed.go /BEGIN OMIT/,/END OMIT/
 
-* Go converts between pointers and values automatically
+* Go converts between pointer recievers and values automatically
 
 - On the last slide, an `Incrementor` value was used to call a pointer method.
 - Here, the variable `inc` is created as a pointer instead of as a value, but there's no need to change the rest of the code.

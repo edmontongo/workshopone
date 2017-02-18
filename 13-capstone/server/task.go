@@ -34,7 +34,7 @@ func (tm *TaskMaster) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 	case "/":
 		writeDocumentation(wr)
 	case "new":
-		tm.newTask(wr, req)
+		tm.newToken(wr, req)
 
 	default:
 		if _, err := uuid.Parse(req.URL.Path); err != nil {
@@ -51,30 +51,30 @@ func (tm *TaskMaster) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func (tm *TaskMaster) newTask(wr http.ResponseWriter, req *http.Request) {
+func (tm *TaskMaster) newToken(wr http.ResponseWriter, req *http.Request) {
 	name := req.FormValue("name")
 	if name == "" {
 		wr.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	id := uuid.New().String()
+	token := uuid.New().String()
 	tm.Lock()
-	tm.tasks.active[id] = Task{name: name}
+	tm.tasks.active[token] = Task{name: name}
 	tm.Unlock()
 
-	fmt.Fprintln(wr, id)
+	fmt.Fprintln(wr, token)
 }
 
-func (tm *TaskMaster) completeTask(wr http.ResponseWriter, id string) {
+func (tm *TaskMaster) completeTask(wr http.ResponseWriter, token string) {
 	tm.Lock()
 	defer tm.Unlock()
-	_, active := tm.tasks.active[id]
-	_, completed := tm.tasks.completed[id]
+	_, active := tm.tasks.active[token]
+	_, completed := tm.tasks.completed[token]
 	switch {
 	case active:
-		tm.tasks.completed[id] = tm.tasks.active[id]
-		delete(tm.tasks.active, id)
+		tm.tasks.completed[token] = tm.tasks.active[token]
+		delete(tm.tasks.active, token)
 	case completed:
 		wr.WriteHeader(http.StatusGone)
 	default:
@@ -82,11 +82,11 @@ func (tm *TaskMaster) completeTask(wr http.ResponseWriter, id string) {
 	}
 }
 
-func (tm *TaskMaster) taskStatus(wr http.ResponseWriter, id string) {
+func (tm *TaskMaster) taskStatus(wr http.ResponseWriter, token string) {
 	tm.Lock()
 	defer tm.Unlock()
-	_, active := tm.tasks.active[id]
-	_, completed := tm.tasks.completed[id]
+	_, active := tm.tasks.active[token]
+	_, completed := tm.tasks.completed[token]
 	switch {
 	case active:
 	case completed:

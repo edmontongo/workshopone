@@ -45,18 +45,6 @@ james@bellstone.ca
 
 .play 10-methods/incrementorFixed.go /func main/,/END OMIT/
 
-* Printing user types
-
-- The default printout of a type is usually not desired.
-
-.play 10-methods/printPersonDefault.go /BEGIN OMIT/,/END OMIT/
-
-* Printing user types: Stringer
-
-- The `String` method will automatically be used if it exists.
-
-.play 10-methods/personStringer.go /BEGIN OMIT/,/END OMIT/
-
 * Chaining calls
 
 # This isn't very important and isn't special to go, so should probably be dropped.
@@ -67,5 +55,4 @@ james@bellstone.ca
 
 * Exercises
 
-- Add a stringer to the type you created in the exercises from the last talk, and use it.
 - Change all of the functions you created in the last talk's exercises to be methods.

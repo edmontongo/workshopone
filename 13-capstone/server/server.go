@@ -20,11 +20,3 @@ func main() {
 		log.Fatal("Could not launch HTTP server:", err.Error())
 	}
 }
-
-// GET  /task/     - Provides documentation
-// GET  /task/new  - Gets a new task ID
-// GET  /task/id   - Gets a task description
-// POST /task/id   - Posts a task solution
-
-// GET  /status         - HTML showing status
-// GET  /status/updates - Websocket providing updates to status

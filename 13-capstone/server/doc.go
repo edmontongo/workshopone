@@ -2,12 +2,12 @@
 // writing simple Go programs against.
 //
 // Basic HTTP API sketch
-//   GET  /task/           - Provides documentation
-//   GET  /task/?name=bob  - Gets a new task ID
-//   POST /task/id         - Post form data in reply
-//   GET  /task/square/    - Gets documentation
-//   GET  /task/square/id  - Gets a number to square
-//   POST /task/square/id  - Post your squared number
+//   GET  /task/                - Provides documentation
+//   GET  /task/?name=[name]    - Gets a new task token
+//   POST /task/[token]         - Post form data in reply
+//   GET  /task/square/         - Gets documentation
+//   GET  /task/square/[token]  - Gets a number to square
+//   POST /task/square/[token]  - Post your squared number
 //
 //   GET  /status         - HTML showing status
 //   GET  /status/updates - Websocket providing updates to status

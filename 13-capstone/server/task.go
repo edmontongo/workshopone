@@ -34,7 +34,7 @@ func (tm *TaskMaster) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 	case "/":
 		writeDocumentation(wr)
 	case "new":
-		tm.newTask(wr)
+		tm.newTask(wr, req)
 
 	default:
 		if _, err := uuid.Parse(req.URL.Path); err != nil {
@@ -51,12 +51,17 @@ func (tm *TaskMaster) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func (tm *TaskMaster) newTask(wr http.ResponseWriter) {
+func (tm *TaskMaster) newTask(wr http.ResponseWriter, req *http.Request) {
+	name := req.FormValue("name")
+	if name == "" {
+		wr.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
 	id := uuid.New().String()
 	tm.Lock()
-	defer tm.Unlock()
-
-	tm.tasks.active[id] = 0
+	tm.tasks.active[id] = Task{name: name}
+	tm.Unlock()
 
 	fmt.Fprintln(wr, id)
 }

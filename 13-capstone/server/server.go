@@ -13,7 +13,10 @@ func main() {
 	}
 
 	tm := NewTaskMaster()
-	http.Handle("/task/", http.StripPrefix("/task/", tm))
+	tm.problems["square"] = &SquareProblemGenerator{}
+	tm.next[""] = "square"
+
+	http.Handle("/task/", http.StripPrefix("/task", tm.Mux()))
 
 	err := http.ListenAndServe(host, nil)
 	if err != nil {

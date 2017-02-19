@@ -10,6 +10,7 @@ The following LaTeX packages are required to build the presentation slides:
 * fontspec
 * listings
 * rotating
+* soul
 
 They are available through the Comprehensive TEX Archive Network (CTAN).
 

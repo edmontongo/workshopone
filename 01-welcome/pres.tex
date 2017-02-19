@@ -1,24 +1,33 @@
 \usepackage{colortbl}
 \usepackage{rotating}
+\usepackage{soul}
 
 \usepackage{listings}
 \usepackage{listings-golang}
 \definecolor{keywords}{RGB}{0,0,120}
 \definecolor{identifiers}{RGB}{120,0,0}
 \definecolor{comments}{RGB}{0,120,0}
-\lstset{language=bash,
+\lstset{language=Golang,
   basicstyle=\small\ttfamily,
   breaklines=true,
   commentstyle=\color{comments}\emph,
-  frame=none, % single
+  frame=none,
   identifierstyle=\color{identifiers},
   keywordstyle=\color{keywords},
-  numbers=none, % left
+  numbers=none,
   numbersep=5pt,
   numberstyle=\footnotesize,
   stepnumber=1,
   stringstyle=\ttfamily,
 }
+\lstdefinelanguage{plain}{%
+  basicstyle=\small\ttfamily,
+  keywordstyle={},
+  identifierstyle={},
+  commentstyle={},
+  stringstyle={},
+  numbers=none,
+  frame=none}
 
 % both bibstyle and verbose-note appear necessary for the footnote
 % citations to work correctly
@@ -162,38 +171,40 @@
 \begin{frame}[t]
   \frametitle{Introduction}
 
-  The Go project is less than 10 years old, but it builds on decades of prior work.
+  The Go project is less than 10 years old, but it builds on \underbar{decades} of work.
 
   \vspace{\baselineskip}
-  Let's\dots
+  Objectives:
   \begin{itemize}
-  \item briefly explore the history
-  \item generally describe the present
+  \item explore the history (briefly)
+  \item describe the present (generally)
   \end{itemize}
 
   \fullvfill
   \hfill
-  \begin{minipage}{0.85\linewidth}
+  \begin{minipage}{\linewidth}
     \raggedright
     \footnotesize
     Two sources were used extensively in creating these slides:\\
-    (1)~\fullcite{Donovan15}\\
-    (2)~\fullcite{GoFAQ}
+    \hangindent=5mm [1]~\fullcite{Donovan15}\\
+    \hangindent=5mm [2]~\fullcite{GoFAQ}
   \end{minipage}
 \end{frame}
 
-\subsection{Motivation}
+\section{History}
+\subsection*{}
 
 \begin{frame}[t]
   \frametitle{Motivation}
 
-  At Google\dots
+  Situation at Google (2007):
   \begin{itemize}
   \item explosion of complexity
   \item desire for simplicity
-  \item shortcomings in existing languages
+  \item shortcomings in existing languages, e.g.,
+
     \begin{itemize}
-    \item concurrency support
+    \item concurrency
     \item build times
     \end{itemize}
   \end{itemize}
@@ -216,19 +227,37 @@
   }
 \end{frame}
 
-\subsection{Conception}
+\begin{frame}[t,fragile]
+  \frametitle{\underbar{Conception} $\rightarrow$ birth}
 
-\begin{frame}[t]
-  \frametitle{Conception $\rightarrow$ birth}
+\begin{lstlisting}[language=plain,escapechar=|,basicstyle=\scriptsize\ttfamily]
+Date: Sun, |\hl{23 Sep 2007}| 23:33:41 -0700
+From: "Robert Griesemer" <gri@google.com>
+To: "Rob 'Commander' Pike" <r@google.com>, ken@google.com
+Subject: prog lang discussion
+...
+*** General:
+Starting point: C, fix some obvious flaws, remove crud, add a few missing features
+  - no includes, instead: import
+  - no macros (do we need something instead?)
+  - ideally only one file instead of a .h and .c file, module interface should be
+    extracted automatically
+  - statements: like in C, though should fix 'switch' statement
+  - expressions: like in C, though with caveats (do we need ',' expressions?)
+  - essentially strongly typed, but probably w/ support for runtime types
+  - want arrays with bounds checking on always (except perhaps in 'unsafe mode' -
+    see section on GC)
+...
+\end{lstlisting}
 
-  \vfill
-
-  \begin{center}
-    \huge
-    Sept.~2007 $\rightarrow$ Nov.~2009
-  \end{center}
-
-  \vfill
+  \fullvfill
+  \hfill
+  \begin{minipage}{\linewidth}
+    \raggedright
+    \footnotesize
+    Source:
+    \fullcite{GoEvolution}
+  \end{minipage}
 
   \note{
     From Donovan15:
@@ -240,11 +269,32 @@
       \end{itemize}
     \item ``announced in November 2009''
     \end{itemize}
+  }
+\end{frame}
 
-    From \url{https://talks.golang.org/2015/gophercon-goevolution.slide}:
+\begin{frame}[t]
+  \frametitle{Conception $\rightarrow$ \underbar{birth}}
+
+  \vspace{-0.4\baselineskip}
+  \begin{center}
+    \includegraphics[width=0.9\linewidth]{announcement}
+  \end{center}
+
+  \vspace{-0.4\baselineskip}
+  \fullvfill
+  \hfill
+  \begin{minipage}{\linewidth}
+    \raggedright
+    \tiny
+    Image adapted from:
+    \fullcite{GoAnnounce}
+  \end{minipage}
+
+  \note{
+    From Donovan15:
 
     \begin{itemize}
-    \item ``Starting point: C, fix some obvious flaws, remove crud, add a few few missing features'' (e-mail: Sept. 23, 2007)
+    \item ``announced in November 2009''
     \end{itemize}
   }
 \end{frame}
@@ -278,7 +328,7 @@
 
   \begin{tabular}{ll}
     \cellcolor{macewan}
-    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}C} &
+    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}C} & \cellcolor{macewan!10}
 \begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=c]
 // basic data types
 float fahrenheit, celsius;
@@ -291,9 +341,10 @@ celsius = (fahrenheit - 32) * 5.0 / 9.0;
 if (celsius < 0) {
     printf("it's freezing!\n");
 }
-\end{lstlisting} \\ & \\
+\end{lstlisting} \\
+                                                         & \\
     \cellcolor{macewan}
-    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}Go} &
+    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}Go} & \cellcolor{macewan!10}
 \begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=Golang]
 var fahrenheit, celsius float32
 
@@ -303,7 +354,7 @@ celsius = (fahrenheit - 32) * 5.0 / 9.0
 if celsius < 0 {
     fmt.Printf("it's freezing!\n")
 }
-\end{lstlisting}
+\end{lstlisting} \\
   \end{tabular}
 
   \note{
@@ -321,7 +372,7 @@ if celsius < 0 {
 
   \begin{tabular}{ll}
     \cellcolor{macewan}
-    \rotatebox{90}{\bfseries\color{white}\hspace{-7mm}Pascal} &
+    \rotatebox{90}{\bfseries\color{white}\hspace{-7mm}Pascal} & \cellcolor{macewan!10}
 \begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language={Pascal}]
 unit amazinglibrary;
 (* interface & implementation both exist in one file *)
@@ -331,9 +382,10 @@ interface
 
 implementation
     (* definitions *)
-\end{lstlisting} \\ & \\
+\end{lstlisting} \\
+                                                              & \\
     \cellcolor{macewan}
-    \rotatebox{90}{\bfseries\color{white}\hspace{-2mm}Go} &
+    \rotatebox{90}{\bfseries\color{white}\hspace{-2mm}Go} & \cellcolor{macewan!10}
 \begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=Golang]
 package amazinglibrary
 
@@ -355,7 +407,7 @@ package amazinglibrary
 
   \begin{tabular}{ll}
     \cellcolor{macewan}
-    \rotatebox{90}{\bfseries\color{white}\hspace{-7mm}Pascal} &
+    \rotatebox{90}{\bfseries\color{white}\hspace{-7mm}Pascal} & \cellcolor{macewan!10}
 \begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language={Pascal}]
 program someprogram;
 
@@ -363,9 +415,10 @@ program someprogram;
 uses
     (* units used... *)
     amazinglibrary;
-\end{lstlisting} \\ & \\
+\end{lstlisting} \\
+                                                              & \\
     \cellcolor{macewan}
-    \rotatebox{90}{\bfseries\color{white}\hspace{-2mm}Go} &
+    \rotatebox{90}{\bfseries\color{white}\hspace{-2mm}Go} & \cellcolor{macewan!10}
 \begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=Golang]
 package main
 
@@ -391,7 +444,7 @@ import (
 
   \begin{tabular}{ll}
     \cellcolor{macewan}
-    \rotatebox{90}{\bfseries\color{white}\hspace{-10mm}Oberon-2} &
+    \rotatebox{90}{\bfseries\color{white}\hspace{-10mm}Oberon-2} & \cellcolor{macewan!10}
 \begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language={Oberon-2}]
 (* syntax for method declaration *)
 PROCEDURE (t: Tree) Lookup* (name: ARRAY OF CHAR): Tree;
@@ -402,9 +455,10 @@ BEGIN p := t;
     END;
     RETURN p
 END Lookup;
-\end{lstlisting} \\ & \\
+\end{lstlisting} \\
+                                                                 & \\
     \cellcolor{macewan}
-    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}Go} &
+    \rotatebox{90}{\bfseries\color{white}\hspace{-1mm}Go} & \cellcolor{macewan!10}
 \begin{lstlisting}[basicstyle={\scriptsize\ttfamily},language=Golang]
 func (t *Node) Lookup(name string) Tree {
     var p Tree
@@ -419,7 +473,7 @@ func (t *Node) Lookup(name string) Tree {
 
   \fullvfill
   \hfill
-  \begin{minipage}{1\linewidth}
+  \begin{minipage}{\linewidth}
     \raggedright
     \footnotesize
     Source:
@@ -445,7 +499,7 @@ func (t *Node) Lookup(name string) Tree {
 
   \fullvfill
   \hfill
-  \begin{minipage}{0.85\linewidth}
+  \begin{minipage}{\linewidth}
     \raggedright
     \footnotesize
     Adapted from:
@@ -468,9 +522,16 @@ func (t *Node) Lookup(name string) Tree {
 \subsection*{}
 
 \begin{frame}[t]
+  \frametitle{Outline}
+
+  \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}[t]
   \frametitle{Go is a \underbar{project}}
 
-  The project consists of\dots
+  Components:
+
   \begin{enumerate}
   \item language
   \item standard libraries
@@ -479,7 +540,7 @@ func (t *Node) Lookup(name string) Tree {
 
   \vspace{\baselineskip}
 
-  Moreover, it is\dots
+  Moreover\dots\dots
   \begin{itemize}
   \item open source
   \item portable
@@ -519,27 +580,27 @@ func (t *Node) Lookup(name string) Tree {
 \begin{frame}[t]
   \frametitle{Go: Language}
 
-  The goals for the language include:
+  Goals:
 
   \begin{itemize}
   \item expressive
+  \item effective for writing reliable \& robust programs
   \item efficient compilation
   \item efficient execution
-  \item effective for writing reliable \& robust programs
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]
   \frametitle{Go: Language: Features}
 
-  Some of the features include:
+  Some features:
 
   \begin{itemize}
-  \item concurrency
   \item packages
-  \item garbage collection
   \item strong type system
+  \item garbage collection
   \item system call interface
+  \item concurrency
   \item object-orientation programming
   \end{itemize}
 
@@ -547,11 +608,6 @@ func (t *Node) Lookup(name string) Tree {
     From Donovan15:
 
     \begin{itemize}
-    \item concurrency: new/efficient facilities (based on CSP)
-      \begin{itemize}
-      \item variable-sized stacks in lightweight threads
-      \end{itemize}
-    \item garbage collection: automatic memory management
     \item strong type system
       \begin{itemize}
       \item not terribly complex
@@ -560,9 +616,14 @@ func (t *Node) Lookup(name string) Tree {
       \item lexical scope: static scoping: think blocks\dots (like C)
       \item immutable strings (often encoded as UTF-8)
       \end{itemize}
+    \item garbage collection: automatic memory management
     \item system call interface
       \begin{itemize}
       \item portability?
+      \end{itemize}
+    \item concurrency: new/efficient facilities (based on CSP)
+      \begin{itemize}
+      \item variable-sized stacks in lightweight threads
       \end{itemize}
     \item OOP:
       \begin{itemize}
@@ -573,10 +634,58 @@ func (t *Node) Lookup(name string) Tree {
   }
 \end{frame}
 
+\begin{frame}[t]
+  \frametitle{Go: Language: Omitted features}
+
+  Omissions:
+
+  \begin{itemize}
+  \item implicit numeric conversions
+  \item constructors/destructors
+  \item operator overloading
+  \item default parameter values
+  \item inheritance
+  \item generics
+  \item exceptions
+  \item macros
+  \item function annotations
+  \end{itemize}
+\end{frame}
+
 \subsection{Tools}
 
 \begin{frame}[t]
-  \frametitle{Go: Tools}
+  \frametitle{Go: Tools: Introduction}
+
+  On the topic of Go's legacy:
+  \begin{quote}
+    I think it's the tooling that has grown, not in spite of the language, but as a deliberate symbiosis, which deserves recognition.
+    \dots{}
+    I think that \texttt{gofmt} deserves most of the credit here.
+
+    \begin{flushright}
+      \begin{minipage}{0.75\linewidth}
+        \raggedright
+        \footnotesize
+        Source:
+        \fullcite{GoLegacy}
+      \end{minipage}
+    \end{flushright}
+  \end{quote}
+
+  \note{
+    In his talk, he also suggested that Go might be remembered for
+    \begin{itemize}
+    \item interfaces
+    \item Goroutines
+    \end{itemize}
+
+    Tooling was just one of the three ideas.
+  }
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Go: Tools: \texttt{go tool}}
 
   Go has a variety of integrated tools.
 
@@ -585,28 +694,29 @@ func (t *Node) Lookup(name string) Tree {
 
   \begin{center}
     \begin{columns}[T]
-      \begin{column}{0.25\textwidth}
-        addr2line \\
-        asm \\
-        cgo \\
-        compile \\
-        cover \\
-        dist
+      \begin{column}{0.15\linewidth}
+        \texttt{addr2line} \\
+        \texttt{api} \\
+        \texttt{asm} \\
+        \texttt{cgo} \\
+        \texttt{compile} \\
+        \texttt{cover}
       \end{column}
-      \begin{column}{0.25\textwidth}
-        doc \\
-        fix \\
-        link \\
-        nm \\
-        objdump \\
-        pack
+      \begin{column}{0.15\linewidth}
+        \texttt{dist} \\
+        \texttt{doc} \\
+        \texttt{fix} \\
+        \texttt{gofmt} \\
+        \texttt{link} \\
+        \texttt{nm}
       \end{column}
-      \begin{column}{0.25\textwidth}
-        pack \\
-        pprof \\
-        tour \\
-        trace \\
-        vet
+      \begin{column}{0.15\linewidth}
+        \texttt{objdump} \\
+        \texttt{pack} \\
+        \texttt{pprof} \\
+        \texttt{tour} \\
+        \texttt{trace} \\
+        \texttt{vet}
       \end{column}
     \end{columns}
   \end{center}
@@ -615,25 +725,49 @@ func (t *Node) Lookup(name string) Tree {
     \tiny
     From https://golang.org/cmd/:
     \begin{tabular}{lp{3.5in}}
-      addr2line &	Addr2line is a minimal simulation of the GNU addr2line tool, just enough to support pprof. \\
-      api &	Binary api computes the exported API of a set of Go packages. \\
-      asm &	Asm, typically invoked as ``go tool asm'', assembles the source file into an object file named for the basename of the argument source file with a .o suffix. \\
-      cgo &	Cgo enables the creation of Go packages that call C code. \\
-      compile &	Compile, typically invoked as ``go tool compile,'' compiles a single Go package comprising the files named on the command line. \\
-      cover &	Cover is a program for analyzing the coverage profiles generated by 'go test -coverprofile=cover.out'. \\
-      dist &	 \\
-      doc &	Doc (usually run as go doc) accepts zero, one or two arguments. \\
-      fix &	Fix finds Go programs that use old APIs and rewrites them to use newer ones. \\
-      go &	Go is a tool for managing Go source code. \\
-      gofmt &	Gofmt formats Go programs. \\
-      link &	Link, typically invoked as ``go tool link,'' reads the Go archive or object for a package main, along with its dependencies, and combines them into an executable binary. \\
-      nm &	Nm lists the symbols defined or used by an object file, archive, or executable. \\
-      objdump &	Objdump disassembles executable files. \\
-      pack &	Pack is a simple version of the traditional Unix ar tool. \\
-      pprof &	Pprof interprets and displays profiles of Go programs. \\
-      trace &	Trace is a tool for viewing trace files. \\
-      vet &	Vet examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string.     \\
+      addr2line &   minimal simulation of the GNU addr2line tool (just enough to support pprof) \\
+      api &	    computes exported API of a set of Go packages \\
+      asm &	    typically invoked as ``go tool asm,'' assembles the source file into an object file named for the basename of the argument source file with a .o suffix \\
+      cgo &	    enables the creation of Go packages that call C code \\
+      compile &	    typically invoked as ``go tool compile,'' compiles a single Go package comprising the files named on the command line \\
+      cover &	    analyzing the coverage profiles generated by 'go test -coverprofile=cover.out' \\
+      dist &	    bootstrapping tool for the Go distribution \\
+      doc &	    typically invoked as ``go doc,'' shows documentation for a package, symbol, and/or method \\
+      fix &	    finds Go programs that use old APIs and rewrites them to use newer ones \\
+      go &	    tool for managing Go source code \\
+      gofmt &	    formats Go programs \\
+      link &	    typically invoked as ``go tool link,'' reads the Go archive or object for a package main, along with its dependencies, and combines them into an executable binary \\
+      nm &	    lists the symbols defined or used by an object file, archive, or executable \\
+      objdump &	    disassembles executable files \\
+      pack &	    simple version of the traditional Unix ar tool \\
+      pprof &	    interprets and displays profiles of Go programs \\
+      trace &	    viewing trace files \\
+      vet &	    examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string \\
     \end{tabular}
+  }
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Go: Tools: External}
+
+  Many other tools exist, too, e.g.,
+
+  \begin{itemize}
+  \item \texttt{callgraph}
+  \item \texttt{goimports}
+  \item \texttt{gorename}
+  \item \texttt{guru}
+  \item \texttt{present}
+  \end{itemize}
+
+  \note{
+    \begin{itemize}
+    \item \texttt{callgraph}: for reporting the call graph
+    \item \texttt{goimports}: for updating your import lines
+    \item \texttt{gorename}: for renaming identifiers in a type-safe way
+    \item \texttt{guru}: for answering questions about source code
+    \item \texttt{present}: for displaying slide presentations and articles
+  \end{itemize}
   }
 \end{frame}
 
@@ -643,7 +777,9 @@ func (t *Node) Lookup(name string) Tree {
   \frametitle{Go: Standard libraries}
 
   Go has an extensive standard library ($\sim$140 packages).
-  Includes a wide variety of packages, e.g.,
+
+  \vspace{\baselineskip}
+  Examples:
 
   \vspace{\baselineskip}
   \begin{tabular}{ll}
@@ -655,6 +791,16 @@ func (t *Node) Lookup(name string) Tree {
     \texttt{net/smtp} & Simple Mail Transfer Protocol \\
     \texttt{syscall} & interface to low-level OS primitives \\
   \end{tabular}
+
+  \note{
+    \begin{itemize}
+    \item ``often described as `batteries included''
+      \begin{itemize}
+      \item clean building blocks/APIS for I/O, text processing, graphics, cryptography, networking, and distributed applications
+      \item support for standard file formats and protocols
+      \end{itemize}
+    \end{itemize}
+  }
 \end{frame}
 
 \begin{frame}[t]
@@ -684,6 +830,12 @@ func (t *Node) Lookup(name string) Tree {
 
 \section{Workshop}
 \subsection{Schedule}
+
+\begin{frame}[t]
+  \frametitle{Outline}
+
+  \tableofcontents[currentsection]
+\end{frame}
 
 \begin{frame}[t]
   \frametitle{Schedule: Morning}

@@ -122,6 +122,40 @@ func main() {
   \end{tabular}
 
   \filbreak
+  \section*{Keywords}
+
+  \begin{tabular}{p{0.5in}p{0.65in}p{0.35in}p{0.5in}p{0.5in}}
+    \texttt{break}    & \texttt{default}     & \texttt{func}   & \texttt{interface} & \texttt{select} \\
+    \texttt{case}     & \texttt{defer}       & \texttt{go}     & \texttt{map}       & \texttt{struct} \\
+    \texttt{chan}     & \texttt{else}        & \texttt{goto}   & \texttt{package}   & \texttt{switch} \\
+    \texttt{const}    & \texttt{fallthrough} & \texttt{if}     & \texttt{range}     & \texttt{type} \\
+    \texttt{continue} & \texttt{for}         & \texttt{import} & \texttt{return}    & \texttt{var} \\
+  \end{tabular}
+
+  \filbreak
+  \section*{Operators, delimiters, and other tokens }
+
+  Operators, delimiters, and other special tokens available:
+
+  \begin{tabular}{lllllllll}
+    \verb!+! & \verb!& ! & \verb!+=! & \verb!&= ! & \verb!&&! & \verb+==+ & \verb+!= + & \verb!(! & \verb!)! \\
+    \verb!-! & \verb!| ! & \verb!-=! & \verb!|= ! & \verb!||! & \verb+< + & \verb+<= + & \verb![! & \verb!]! \\
+    \verb!*! & \verb!^ ! & \verb!*=! & \verb!^= ! & \verb!<-! & \verb+> + & \verb+>= + & \verb!{! & \verb!}! \\
+    \verb!/! & \verb!<<! & \verb!/=! & \verb!<<=! & \verb!++! & \verb+= + & \verb+:= + & \verb!,! & \verb!;! \\
+    \verb!%! & \verb!>>! & \verb!%=! & \verb!>>=! & \verb!--! & \verb+! + & \verb+...+ & \verb!.! & \verb!:! \\
+    \verb! ! & \verb!&^! & \verb!  ! & \verb!&^=! & \verb!  ! & \verb+  + & \verb+   + & \verb! ! & \verb! ! \\
+  \end{tabular}
+
+  Notable differences from C:
+
+  \begin{tabular}{ll}
+    \texttt{\&\textasciicircum} & bit clear (AND NOT) \\
+    \texttt{\&\textasciicircum=} & bit clear (AND NOT) to update a variable \\
+    \texttt{<-} & channel send/receive \\
+    \texttt{:=} & short variable declaration     \\
+  \end{tabular}
+
+  \filbreak
   \section*{Functions}
 
   \subsection*{Syntax (basic)}
@@ -147,6 +181,7 @@ func %\textit{\underbar{name}}%(%\textit{\underbar{arguments}}%) %\textit{\under
   \item[Block] statement list inside braces, similar to C (e.g.,~\lstinline!{ count := 0; }!)
   \end{description}
 
+  \filbreak
   \subsection*{\texttt{for} statement}
 
   \lstinline{for} statements provide repetition.
@@ -182,7 +217,7 @@ func %\textit{\underbar{name}}%(%\textit{\underbar{arguments}}%) %\textit{\under
     \texttt{database/sql} & generic interface around SQL DBs \\
     \texttt{encoding/csv} & read/write CSV files \\
     \texttt{encoding/json} & encode/decode JSON \\
-    \texttt{errors} & manpulation of errors \\
+    \texttt{errors} & manipulation of errors \\
     \texttt{flag} & command-line argument parsing \\
     \textbf{\texttt{fmt}} & formatted I/O, e.g., \texttt{Printf} \\
     \texttt{log} & simple logging\\

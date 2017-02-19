@@ -5,7 +5,6 @@
 \usepackage{color}
 \usepackage[type={CC},modifier={by-sa},version={4.0}]{doclicense}
 \usepackage[inline,shortlabels]{enumitem}
-\usepackage{fancyvrb}
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{parskip}            % stop indenting
@@ -21,29 +20,23 @@
 \pagestyle{empty}
 
 \usepackage{xltxtra}
-\setmainfont[
-Ligatures = TeX,
-]{Helvetica Neue}
-\setmonofont[
-AutoFakeSlant,
-BoldItalicFeatures={FakeSlant},
-]{Courier}
+\setmainfont[Ligatures=TeX]{Helvetica Neue}
+\setmonofont[AutoFakeSlant,BoldItalicFeatures={FakeSlant}]{Courier}
 
 \usepackage{listings}
 \lstdefinelanguage{plain}{%
-  basicstyle=\scriptsize\ttfamily,
+  basicstyle=\ttfamily,
   keywordstyle={},
   identifierstyle={},
   commentstyle={},
   stringstyle={},
   numbers=left,
-  %numberstyle={\tiny\color{gray}},
   frame=single}
 \lstset{
   belowskip=0.2em,
   aboveskip=0.2em,
   language=plain,
-  basicstyle=\scriptsize\ttfamily
+  basicstyle=\ttfamily
 }
 
 \begin{document}
@@ -140,10 +133,68 @@ func %\textit{\underbar{name}}%(%\textit{\underbar{arguments}}%) %\textit{\under
 \end{lstlisting}
 
   \filbreak
-  \section*{Standard library}
+  \section*{Control structures}
+
+  \subsection*{\texttt{if} statement}
+
+  \lstinline{if} statements provide conditional execution.
+
+  \includegraphics[width=\linewidth]{if}
+
+  \begin{description}
+  \item[Expr] expression, similar to C (e.g.,~\lstinline{1 + 2 * 3})
+  \item[SimpleStmt] expression, increment/decrement statement (e.g.,~\lstinline{i++}), assignment (e.g.,~\lstinline{count = 0}), short declaration (e.g.,~\lstinline{count := 0})
+  \item[Block] statement list inside braces, similar to C (e.g.,~\lstinline!{ count := 0; }!)
+  \end{description}
+
+  \subsection*{\texttt{for} statement}
+
+  \lstinline{for} statements provide repetition.
+  The first form is similar to C with its three part: initialization, condition, and update.
+  The second form is similar to C's \texttt{while} loop.
+  The third form shares similarities with Python's \lstinline{for} loop.
+
+  \includegraphics[width=\linewidth]{for-3parts}
+
+  \includegraphics[width=\linewidth]{for-1cond}
+
+  \includegraphics[width=\linewidth]{for-range}
+
+  \begin{description}
+  \item[IdentList] identifiers separated by commas (e.g.,~\lstinline{i, j, k})
+  \item[ExprList] expressions separated by commas (e.g.,~\lstinline{key, val})
+  \end{description}
 
   \filbreak
-  \section*{Control structures}
+  \subsection*{\lstinline{switch} statement}
+
+  \lstinline{switch} statements provide conditional execution.
+
+  \includegraphics[width=\linewidth]{switch-expr}
+
+  \filbreak
+  \section*{Standard library}
+
+  \begin{tabular}{p{0.8in}p{2.2in}}
+    \toprule
+    \textbf{Package} & \textbf{Description} \\
+    \midrule
+    \texttt{database/sql} & generic interface around SQL DBs \\
+    \texttt{encoding/csv} & read/write CSV files \\
+    \texttt{encoding/json} & encode/decode JSON \\
+    \texttt{errors} & manpulation of errors \\
+    \texttt{flag} & command-line argument parsing \\
+    \textbf{\texttt{fmt}} & formatted I/O, e.g., \texttt{Printf} \\
+    \texttt{log} & simple logging\\
+    \texttt{math/rand} & pseudo-random number generators \\
+    \textbf{\texttt{net/http}} & HTTP client/server implementations \\
+    \texttt{os} & interface to OS functionality \\
+    \texttt{path} & manipulation of slash-separated paths \\
+    \texttt{sort} & primitives for sorting \\
+    \textbf{\texttt{strings}} & string manipulation (UTF-8 encoded) \\
+    \texttt{time} & functionality for measuring/displaying time \\
+    \bottomrule
+  \end{tabular}
 
   \filbreak
   \section*{Pointers}

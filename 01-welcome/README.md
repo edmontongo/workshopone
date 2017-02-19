@@ -21,3 +21,7 @@ The following fonts are required:
 
 * Helvetica Neue
 * Courier
+
+## Additional requirements
+
+To generate a graph, R is required.

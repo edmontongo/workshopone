@@ -31,7 +31,8 @@ type Complex struct {
 }
 
 func (c Complex) ToString() string {
-	return fmt.Sprintf("f1: %v, f2: %v, f3: %v now: %v", c.Field1, c.Field2, c.Field3, time.Now().Format("15:04:05"))
+	return fmt.Sprintf("f1: %v, f2: %v, f3: %v now: %v",
+		c.Field1, c.Field2, c.Field3, time.Now().Format("15:04:05"))
 }
 
 // IMPLEMENT_END OMIT

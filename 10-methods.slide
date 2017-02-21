@@ -48,8 +48,6 @@ james@bellstone.ca
 
 .play 10-methods/incrementorFixed.go /func main/,/END OMIT/
 
-# Probably add a slide about automatically calling methods of embedded types, but only if the talk about user types has already explained embedded types. (Otherwise, my `Incrementor` slides need to stop embedding `i`.)
-
 * Exercises
 
 - Change all of the functions you created in the last talk's exercises to be methods.

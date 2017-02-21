@@ -76,7 +76,6 @@
       MacEwan University
     }
 
-    \vspace{1em}
     Last updated: \today
   \end{center}
 
@@ -94,12 +93,12 @@ go |\var{command}| [|\var{arguments}|]
   \begin{tabular}{p{0.5in}p{2.5in}}
     \texttt{build} & compile packages and dependencies \\
     \texttt{get} & download and install packages and dependencies \\
-    \texttt{run} & compile and run Go program \\
+    \texttt{run} & compile and run the Go program \\
   \end{tabular}
 
   \subsection*{Program execution}
 
-  Execution begins at the function \lstinline{main} in package \lstinline{main}:
+  Execution begins at the \lstinline{main} function in the \lstinline{main} package:
 \begin{lstlisting}[frame=single,escapechar=\%]
 package main
 
@@ -127,6 +126,7 @@ func main() {
     \texttt{int\textit{\underbar{x}}} & signed \texttt{\textit{\underbar{x}}}-bit integer where \texttt{\textit{\underbar{x}}} is 8, 16, 32, or 64 \\
     \texttt{uint\textit{\underbar{x}}} & unsigned \texttt{\textit{\underbar{x}}}-bit integer \\
     \texttt{float\textit{\underbar{x}}} & \texttt{\textit{\underbar{x}}}-bit float where \texttt{\textit{\underbar{x}}} is 32 or 64 \\
+    \texttt{rune} & alias for \texttt{int32}; \texttt{'\dots'}: literal rune (Unicode) \\
     \bottomrule
   \end{tabular}
 
@@ -158,7 +158,7 @@ func main() {
 
 
   \filbreak
-  \section*{Keywords, operators, delimiters}
+  \section*{Keywords, operators, and delimiters}
 
   \begin{tabular}{p{0.44in}p{0.74in}p{0.35in}p{0.6in}p{0.7in}}
     \lstinline!break!    & \lstinline!default!     & \lstinline!func!   & \lstinline!interface! & \lstinline!select!\\%
@@ -181,11 +181,9 @@ func main() {
 
   Notable differences from C:
 
-  \begin{tabular}{ll}
-    \texttt{\&\textasciicircum} & bit clear (AND NOT) \\
-    \texttt{\&\textasciicircum=} & bit clear (AND NOT) to update a variable \\
-    \texttt{<-} & channel send/receive \\
-    \texttt{:=} & short variable declaration     \\
+  \begin{tabular}{llll}
+    \texttt{\&\textasciicircum} & bit clear (AND NOT) & \texttt{<-} & channel send/receive \\
+    \texttt{\&\textasciicircum=} & (update a variable) & \texttt{:=} & short variable declaration     \\
   \end{tabular}
 
   \filbreak
@@ -194,7 +192,8 @@ func main() {
   \includegraphics[width=\linewidth]{func}
 
   \begin{tabular}{p{0.3in}p{2.7in}}
-    Block & statement list inside braces, similar to C\newline(e.g.,~\lstinline!{ failures++; }!)\\
+    Ident &  identifier \\
+    Block & statement list inside braces, similar to C\newline(e.g.,~\lstinline!{ failures++ }!)\\
   \end{tabular}
 
   \vspace{\baselineskip}
@@ -230,7 +229,6 @@ if bal < 0 {
 }
 
 if err := f.Close(); err != nil {
-    // body
 }
 \end{lstlisting}
 
@@ -239,10 +237,10 @@ if err := f.Close(); err != nil {
 
 \begin{lstlisting}[frame=single,escapechar=|]
 for i := 0; i < 10; i++ {
-    // body for C-style "for" loop
+    // C-style "for" loop (init; cond.; update)
 }
 for ;; {
-    // body for C-style |\color{comments}$\infty$| "for" loop
+    // C-style |\color{comments}$\infty$| "for" loop
 }
 \end{lstlisting}
 
@@ -275,8 +273,10 @@ for {
   \vspace{\baselineskip}
 \begin{lstlisting}[frame=single,escapechar=|]
 for idx, str := range []string{"A", "B", "C"} {
-    // body for Python-style "for" loop
-    fmt.Println(idx, str)
+    // Python-style "for" loop
+}
+
+for _, aRune := range "string of runes" {
 }
 \end{lstlisting}
 
@@ -292,7 +292,7 @@ for idx, str := range []string{"A", "B", "C"} {
     \toprule
     \textbf{Package} & \textbf{Description} \\
     \midrule
-    \texttt{database/sql} & generic interface around SQL DBs \\
+    \texttt{database/sql} & generic interface around SQL databases \\
     \texttt{encoding/csv} & read/write CSV files \\
     \texttt{encoding/json} & encode/decode JSON \\
     \texttt{errors} & manipulation of errors \\
@@ -309,6 +309,10 @@ for idx, str := range []string{"A", "B", "C"} {
     \bottomrule
   \end{tabular}
 
+  To access a function in a package:\\
+  \texttt{import "location/of/\var{package}"} and\\
+  \texttt{\var{package}.\var{FunctionName}(\dots)}
+
   \filbreak
   \section*{Pointers}
 
@@ -316,9 +320,9 @@ for idx, str := range []string{"A", "B", "C"} {
     \toprule
     \textbf{Syntax} & \textbf{Description} \\
     \midrule
-    \lstinline!*int! & type: pointer to an \texttt{int} \\
-    \lstinline!*[]int! & type: pointer to a slice of \texttt{int} \\
-    \lstinline!*[4]int! & type: pointer to an array of 4 \texttt{int} \\
+    \lstinline!*int! & type: pointer to an \lstinline!int! \\
+    \lstinline!*[]int! & type: pointer to a slice of \lstinline!int! \\
+    \lstinline!*[4]int! & type: pointer to an array of 4 \lstinline!int! \\
     \midrule
     \texttt{\&x} & if \texttt{x} is of type \texttt{T}, pointer to \texttt{x} (of type \texttt{*T}) \\
     \texttt{*x} & if \texttt{x} is of type \texttt{*T}, variable pointed to by \texttt{x} (of type \texttt{T}) \\
@@ -332,8 +336,8 @@ for idx, str := range []string{"A", "B", "C"} {
     \toprule
     \textbf{Syntax} & \textbf{Description} \\
     \midrule
-    \lstinline!map[string]int! & type: map string $\rightarrow$ int \\
-    \lstinline!map[int]float64! & type: map int $\rightarrow$ float64 \\
+    \lstinline!map[string]int! & type: map \lstinline!string! $\rightarrow$ \lstinline!int! \\
+    \lstinline!map[int]float64! & type: map \lstinline!int! $\rightarrow$ \lstinline!float64! \\
     \midrule
     \lstinline!m := make(map[int]int)! & create a new/empty map \\
     \lstinline!m := map[int]int{}! & create a new/empty map \\
@@ -355,6 +359,7 @@ for idx, str := range []string{"A", "B", "C"} {
     \texttt{\var{var}[\var{low}:]} & slice of \var{var} from \var{low} to \texttt{len(\var{var})} \\
     \texttt{\var{var}[:\var{high}]} & slice of \var{var} from 0 to \var{high} (not incl. \var{high})\\
     \texttt{\var{var}[:]} & slice of \var{var} from 0 to \texttt{len(\var{var})} \\
+    \texttt{append(\var{s},~\var{v})} & append value \var{v} to slice \var{s}; returns slice \\
     \bottomrule
   \end{tabular}
 
@@ -364,7 +369,6 @@ for idx, str := range []string{"A", "B", "C"} {
   \includegraphics[width=\linewidth]{struct}
 
   \begin{tabular}{p{0.45in}p{2.55in}}
-  Ident &  identifier \\
   Type &  an array, struct, pointer, function, interface, slice, map, or channel type; or a TypeName \\
   TypeName &  identifier for a user-defined type \\
   Tag &  an optional string literal used to specify an attribute for a field \\
@@ -450,7 +454,7 @@ type |\var{name}| interface {
 }
 \end{lstlisting}
 
-\begin{lstlisting}[escapechar=|]
+\begin{lstlisting}[frame=single,escapechar=|]
 type ReadCloser interface {
     Reader
     Closer

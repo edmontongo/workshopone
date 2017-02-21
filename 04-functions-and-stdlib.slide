@@ -87,3 +87,5 @@ Exercise 2
 - Create a function which solves the quadratic equation when given `a`, `b`, and `c`
 - It will need to return two values
 - Test Data: a=1, b=3, c=-4 returns -4 and 1. a=2, b=-4, c=-3 returns –0.58 and 2.58.
+
+.image 04-functions-and-stdlib/Quadratic_formula.svg

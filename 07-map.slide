@@ -96,13 +96,21 @@ Lukasz Rozycki
 .play 07-map/for5.go /START/,/END/
 
 * Map is a reference type
-- zero value is `nil`
-- delete(nil, key) no-op
- TODO example
+- zero value
+.play 07-map/nil.go /START/,/END/
+- add
+.play 07-map/nil2.go /START/,/END/
+- retrieve
+.play 07-map/nil3.go /START/,/END/
+- delete (no-op)
+.play 07-map/nil4.go /START/,/END/
+
+* Map is a reference type
 - passing to a function
- TODO example
-- assigning second handle
- TODO example
+.code 07-map/ref.go /FUNC_S/,/FUNC_E/
+.play 07-map/ref.go /START/,/END/
+- assigning to a second variable
+.play 07-map/ref2.go /START/,/END/
 
 * Exercises
 

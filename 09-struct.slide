@@ -2,13 +2,99 @@ Defined types and structs in Go
 22 Feb 2017
 Tags: edmontongo, golang, workshop
 
+
 * Defined types
 
-type keyword. defining a new type
+Types help us organize data.
 
-* Structs
 
-syntax
-nesting structs
+* Adding meaning to a basic type
 
-pass by value
+.play -edit 09-struct/conflation.go /START OMIT/,/END OMIT$/
+
+
+* Enumerated constants
+
+.play -edit 09-struct/enum.go /START OMIT/,/END OMIT$/
+
+
+* Composite types
+
+.play -edit 09-struct/composite.go /START OMIT/,/END OMIT$/
+
+
+* Type declarations
+
+- Create a new type, not an alias.
+
+.code 09-struct/conflation.go /START DISTINCT OMIT/,/END DISTINCT OMIT/
+
+- Operations (+, *, [], etc) of the new type are determined by the underlying type.
+
+.play -edit 09-struct/definition.go /START OMIT/,/END OMIT$/
+
+
+* Explicit type conversions
+
+Conversions are possible between:
+
+- same underlying type
+- pointers to same underlying type
+- numeric types
+- string and byte or rune slices
+
+.play -edit 09-struct/conversion.go /START OMIT/,/END OMIT$/
+
+* Struct literals
+
+- Fields in struct literals can be given positionally or with names.
+- Struct literals are addressable using &.
+- Can be nested.
+
+.play -edit 09-struct/literals.go /START OMIT/,/END OMIT$/
+
+
+* Zero values
+
+Missing fields are initialized to zero. If fields are given positionally, they all must be given.
+
+.play -edit 09-struct/missing.go /START OMIT/,/END OMIT$/
+
+Useful zero values:
+
+.play -edit 09-struct/zero.go /START OMIT/,/END OMIT$/
+
+
+* Structs are passed by value
+
+A shallow copy is made. To mutate a struct argument, pass a pointer to it. The dot operator automatically dereferences pointers.
+
+.play -edit 09-struct/pass.go /START OMIT/,/END OMIT$/
+
+
+* Comparing structs
+
+Structs of the same type are comparable if all their fields are comparable.
+
+.play -edit 09-struct/cmp.go /START OMIT/,/END OMIT$/
+
+
+* Nesting structs
+
+As a field:
+
+.play -edit 09-struct/nest.go /START OMIT/,/END OMIT$/
+
+Including another struct's fields using embedding:
+
+.play -edit 09-struct/embed.go /START OMIT/,/END OMIT$/
+
+
+* Exercises
+
+Make a simple model of bank account using structs and functions.
+
+- Create an enumerated constant for a bank account type: Checking or Savings.
+- Create a struct for someone's bank account, including a name, account balance, and account type.
+- Write a function which takes the struct as an argument and prints information about the account.
+- Write the functions Withdraw and Deposit which take the struct and a positive amount and update the account balance.

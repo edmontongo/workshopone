@@ -12,4 +12,5 @@ gocode.pdf: gocode.R
 
 clean:
 	latexmk -C
-	$(RM) pres{,_notes,_slides}.{bbl,bib.bak,nav,run.xml,snm,vrb}
+	$(RM) pres{,_notes,_slides}.{bbl,bib.bak,nav,run.xml,snm,vrb} gocode.pdf
+	$(RM) -r auto

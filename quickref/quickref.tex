@@ -103,8 +103,11 @@ go |\var{command}| [|\var{arguments}|]
 \begin{lstlisting}[frame=single,escapechar=\%]
 package main
 
+import "fmt"
+
 func main() {
-    // body for function
+    // body for function, e.g.,
+    fmt.Println("hello, world")
 }
 \end{lstlisting}
 
@@ -439,7 +442,7 @@ func (p *Point) Length() float64 {
   \section*{Interfaces}
 
   An interface type describes \textit{behaviour}, rather than data.
-  An object's type is equivalent to the interface type if the object implements the interface type's behaviour.
+  An object's type is equivalent to the interface type if it implements the interface type's behaviour.
 
 \begin{lstlisting}[escapechar=|]
 type |\var{name}| interface {

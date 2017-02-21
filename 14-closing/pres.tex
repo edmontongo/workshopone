@@ -1,0 +1,244 @@
+\usepackage{colortbl}
+\usepackage{rotating}
+\usepackage{soul}
+
+% both bibstyle and verbose-note appear necessary for the footnote
+% citations to work correctly
+\usepackage[bibstyle=ieee,citestyle=verbose-note,firstinits=true]{biblatex}
+\addbibresource{pres.bib}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Helvetica Neue}
+\setmonofont{Courier}
+
+\newcommand{\fullvfill}{\vskip0pt plus 1filll}
+
+% -----------------------------------------------------------------------------
+% colours and themes
+\definecolor{macewan}{RGB}{139,35,50}
+
+% Beamer themes
+\useoutertheme[subsection=false,shadow,footline=institutetitle]{miniframes}
+\useinnertheme{default}
+
+\setbeamercolor*{lower separation line head}{bg=macewan}
+\setbeamercolor*{normal text}{fg=black,bg=white}
+\setbeamercolor*{alerted text}{fg=red}
+\setbeamercolor*{example text}{fg=black}
+\setbeamercolor*{structure}{fg=black}
+
+\setbeamercolor*{palette tertiary}{fg=black,bg=black!10}
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10}
+\setbeamercolor*{titlelike}{fg=macewan}
+
+% color schemes for boxes
+\beamerboxesdeclarecolorscheme{normal}{macewan}{macewan!15!averagebackgroundcolor}
+\beamerboxesdeclarecolorscheme{alert}{red}{red!15!averagebackgroundcolor}
+
+\setbeamercovered{transparent}
+
+% -----------------------------------------------------------------------------
+% fonts
+\usefonttheme{professionalfonts}
+\usefonttheme{serif}
+
+\newenvironment{fancyquote}%
+{\begin{quote}\makebox(0,0){\vspace{-0.05cm}\par\hspace{2.25cm}\includegraphics[scale=0.55]{quotes}}}%
+  {\end{quote}}
+
+\title[Closing Remarks]{Closing Remarks}
+\author[N. M. Boers]{Nicholas M. Boers}
+\date{February~22,~2017}
+\institute{
+  \IfFileExists{macewan.pdf}{
+    \vspace{0.2em}
+    \includegraphics[height=1.25cm]{macewan}\\[0.25em]
+  }{
+    MacEwan University
+  }
+}
+\def\inserteventshort{Go Workshop}
+\def\insertevent{Go Workshop}
+
+% -----------------------------------------------------------------------------
+% custom headline
+\newlength{\logowidth}
+\setlength{\logowidth}{1.7cm}
+\newlength{\navwidth}
+\setlength{\navwidth}{\paperwidth}
+\addtolength{\navwidth}{-\logowidth}
+\addtolength{\navwidth}{-3pt}
+\addtolength{\logowidth}{-3pt}
+\setbeamertemplate{headline}
+{%
+  \vskip2pt\nobreak%
+  \begin{minipage}{\navwidth}%
+    \fontsize{8pt}{9.2}\selectfont{}%
+    \insertnavigation{\navwidth}%
+  \end{minipage}%
+  \nobreak\nobreak%
+  \IfFileExists{macewan.pdf}{%
+    \begin{minipage}{\logowidth}%
+      \vskip2pt%
+      \includegraphics[width=\logowidth]{macewan}%
+    \end{minipage}%
+  }{}%
+  %
+  \linebreak[0]\vskip4pt%
+  \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+  \end{beamercolorbox}
+}
+
+% -----------------------------------------------------------------------------
+% custom footline
+\setbeamercolor{footline}{fg=white,bg=macewan}
+\setbeamertemplate{footline}
+{%
+  \leavevmode%
+  \begin{beamercolorbox}{footline}%
+    \usebeamerfont{page number in head/foot}%
+    %
+    \vskip2pt\hspace{2mm}%
+    \insertshorttitle, \insertshortauthor, \insertevent%
+    \hfill%
+    \insertframenumber\/ of \inserttotalframenumber%
+    \kern2mm\vskip2pt%
+  \end{beamercolorbox}%
+}
+
+% -----------------------------------------------------------------------------
+% custom title page
+\usetitlepagetemplate{
+  \vbox{}
+  \vfill
+  \begin{centering}
+    %% if unwanted
+    {\textcolor{macewan}{\Large{\inserttitle}}}\par
+    \ifx\insertsubtitle\@empty\else\vskip0.0em\vskip0.4em{\large{\structure{\textcolor{macewan}\insertsubtitle}}}\par\fi
+    \vskip2em\par
+    \insertauthor\par
+    \insertinstitute\par\vskip1.25em
+    \inserteventshort\par\vskip1.25em
+    \insertdate\par
+  \end{centering}
+  \vfill
+}
+
+\begin{document}
+
+\begin{frame}[plain,c]
+  \titlepage  
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Outline}
+
+  \tableofcontents  
+\end{frame}
+
+\section{Covered topics}
+\subsection*{}
+
+\begin{frame}[t]
+  \frametitle{Covered topics (1 of 2)}
+
+  \begin{columns}[T]
+    \begin{column}{0.5\linewidth}
+      \begin{itemize}
+      \item Fundamental types
+        \begin{itemize}
+        \item Boolean
+        \item Numeric
+        \item String
+        \end{itemize}
+      \end{itemize}      
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{itemize}
+      \item Composite types
+        \begin{itemize}
+        \item Arrays
+        \item Structures
+        \item Pointers
+        \item Functions
+        \item Interfaces
+        \item Slices
+        \item Maps
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Covered topics (2 of 2)}
+
+  \begin{itemize}
+  \item Functions
+  \item Control structures
+  \item Standard library
+  \item User-defined types
+
+    \begin{itemize}
+    \item Methods
+    \item Interfaces
+    \end{itemize}
+  \item Error
+  \end{itemize}
+\end{frame}
+
+\section{Future topics}
+\subsection*{}
+
+\begin{frame}[t]
+  \frametitle{Future topics}
+
+  Some topics that may not have been covered:
+
+  \begin{columns}[T]
+    \begin{column}{0.5\linewidth}
+      \begin{itemize}
+      \item Constant declarations
+      \item Iota
+      \item Types
+        
+        \begin{itemize}
+        \item Type assertions
+        \item Type switch
+        \item Length/capacity for slices
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{itemize}
+      \item Concurrency
+        
+        \begin{itemize}
+        \item Go statements
+        \item Receive operator
+        \item Composite type: channel
+        \end{itemize}
+      \item Defer statements
+      \item Panics
+      \item Bootstrapping
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\section{Thanks}
+\subsection*{}
+
+\begin{frame}[t]
+  \frametitle{Thank you!}
+
+  This workshop has been made possible by:
+  \begin{enumerate}
+  \item presenters/mentors from Edmonton Go
+  \item students
+  \item Department of Computer Science (MacEwan)
+  \end{enumerate}
+\end{frame}
+
+\end{document}

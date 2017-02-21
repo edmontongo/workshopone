@@ -10,8 +10,12 @@ func main() {
 		"Canada": 150,
 	}
 	// START OMIT
-	if age, ok := ages["Baby"]; ok {
-		fmt.Println("Baby age is known")
+	var sum int
+	var n int
+	for _, value := range ages {
+		n++
+		sum += value
 	}
+	fmt.Println("Average age rounded down is:", sum/n)
 	// END OMIT
 }

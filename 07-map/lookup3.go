@@ -10,8 +10,6 @@ func main() {
 		"Canada": 150,
 	}
 	// START OMIT
-	if age, ok := ages["Baby"]; ok {
-		fmt.Println("Baby age is known")
-	}
+	fmt.Println(ages[32])
 	// END OMIT
 }

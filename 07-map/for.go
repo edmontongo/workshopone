@@ -10,8 +10,8 @@ func main() {
 		"Canada": 150,
 	}
 	// START OMIT
-	if age, ok := ages["Baby"]; ok {
-		fmt.Println("Baby age is known")
+	for key := range ages {
+		fmt.Print(key, ":", ages[key], ", ")
 	}
 	// END OMIT
 }

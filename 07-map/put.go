@@ -10,8 +10,8 @@ func main() {
 		"Canada": 150,
 	}
 	// START OMIT
-	if age, ok := ages["Baby"]; ok {
-		fmt.Println("Baby age is known")
-	}
+	ages["Baby"] = 1
+	ages["Baby2"] = 0
+	fmt.Println(ages)
 	// END OMIT
 }

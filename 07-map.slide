@@ -12,6 +12,7 @@ Lukasz Rozycki
 - Fast lookups, adds, and deletes
 - A Go map type looks like this:
  map[KeyType]ValueType
+- Maps are not safe for concurrent use
 
 * What can be a key?
 
@@ -29,15 +30,12 @@ Lukasz Rozycki
 - empty map
 .play 07-map/emptyliteral.go /START/,/END/
 
-#* Creating a map - skipping types in literal
-# TODO example
-
 * Lookup
 - index expression
 .play 07-map/lookup.go /START/,/END/
 - zero value
 .play 07-map/zerovalue.go /START/,/END/
-- what about Baby??
+- what about Baby?
 .play 07-map/commaok1.go /START/,/END/
 
 * Lookup
@@ -52,17 +50,51 @@ Lukasz Rozycki
 - why underscore?
 .play 07-map/commaok5.go /START/,/END/
 
-* Addition and deletion
+* Addition
 - index expression
- TODO someMap[key] = value
-- zero value and counting
- TODO someMap[key] += value
- TODO example count even / odd with True / False
+.play 07-map/put.go /START/,/END/
+- read and modify
+.play 07-map/put2.go /START/,/END/
+
+* Deletion
 - delete built-in function
  func delete(m map[Type]Type1, key Type)
- TODO example
-- delete no-op if no such element
- TODO example
+.play 07-map/delete.go /START/,/END/
+- delete no-op
+.play 07-map/delete2.go /START/,/END/
+
+* Wrong types
+- get wrong type
+.play 07-map/lookup3.go /START/,/END/
+- add wrong type
+.play 07-map/put3.go /START/,/END/
+- delete wrong type
+.play 07-map/delete3.go /START/,/END/
+
+* Set with map
+- create
+ set := map[int]bool{}
+- add to a aset
+ set[3] = true
+- remove from set
+ delete(set, 7)
+- check if set contains
+ if(set[13]) ...
+
+* Iteration
+- for range
+.play 07-map/for.go /START/,/END/
+- order is random
+.play 07-map/for2.go /START/,/END/
+
+* Iteration
+- blank value
+.play 07-map/for3.go /START/,/END/
+- key and value
+.play 07-map/for4.go /START/,/END/
+- blank key
+.play 07-map/for5.go /START/,/END/
+
 * Map is a reference type
 - zero value is `nil`
 - delete(nil, key) no-op
@@ -72,13 +104,17 @@ Lukasz Rozycki
 - assigning second handle
  TODO example
 
-* notes
+* Exercises
 
-range key value
-unordered
- - random order, as people were relying on the order
-do set with map
-Maps are not safe for concurrent use
+- word count from go playground
+ - provide package and method to split input
+- bank
+ - boolean deposit(bank, name, amount)
+  - if not a client, than assume initial deposit
+  - if value exceeds max int return false
+ - boolean withdraw(bank, name, amount, max_overdraft)
+  - final amount cannot be less than max_overdraft
+  - only clients can withdraw
 
 * Resources
 - [[https://blog.golang.org/go-maps-in-action][Go maps in action]] 

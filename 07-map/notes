@@ -74,10 +74,9 @@ Exercises:
   - boolean deposit(bank, name, amount)
    - if not a client, than assume initial deposit
    - if value exceeds max int return false
-  - boolean withdraw(bank, name, amount)
-   - return false if not successful
-   - negative limit is -200
-   - new client cannot have overdraft
+  - boolean withdraw(bank, name, amount, max_overdraft)
+   - final amount cannot be less than max_overdraft
+   - only clients can withdraw
 
 
 package main

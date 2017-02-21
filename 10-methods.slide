@@ -48,12 +48,6 @@ james@bellstone.ca
 
 .play 10-methods/incrementorFixed.go /func main/,/END OMIT/
 
-* Chaining calls
-
-# This isn't very important and isn't special to go, so should probably be dropped.
-
-.play 10-methods/chainIncrementor.go /BEGIN OMIT/,/END OMIT/
-
 # Probably add a slide about automatically calling methods of embedded types, but only if the talk about user types has already explained embedded types. (Otherwise, my `Incrementor` slides need to stop embedding `i`.)
 
 * Exercises

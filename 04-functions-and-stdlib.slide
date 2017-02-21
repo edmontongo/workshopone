@@ -71,11 +71,6 @@ james@bellstone.ca
 
 * Exercises
 
-- Create a function that returns three arguments for the cubic root of a number
-- Just kidding! You would need the `math/cmplx` package and imaginary numbers
-
-* Exercises
-
 Exercise 1
 
 - Use the standard library function to print an integer in base 23

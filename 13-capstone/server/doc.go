@@ -29,7 +29,7 @@ func writeDocumentation(wr http.ResponseWriter, req *http.Request) {
 	fmt.Fprintln(wr,
 		`To complete this exercise, you must retrieve and answer several problems.
 First, you have to get a token that will represent a taskset. This is done
-with GET /task/?name=YOURNAME.
+with GET /task/new?name=YOURNAME.
 
 Then you must confirm you have a token, simply with POST /task/TOKEN.
 The next problems are at the following locations, and must be done in
@@ -46,6 +46,6 @@ to with a 406 NotAcceptable.
 - 404 NotFound is returned if a TOKEN is invalid, expired, or for a
 different task.
 
-To GET started, look up http.DefaultClient in godoc.
+To GET started, look up http.Get in godoc.
 `)
 }

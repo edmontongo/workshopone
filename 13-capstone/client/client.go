@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"log"
@@ -23,16 +24,33 @@ func main() {
 
 func exitOnError(err error) {
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }
 
-func getToken() string {
-	resp, err := http.DefaultClient.Get(*url + "/task/new?name=" + *name)
+func exitOnBadResponse(resp *http.Response, err error) {
 	exitOnError(err)
+	if resp.StatusCode != http.StatusOK {
+		panic(resp.Status)
+	}
+}
+
+func mustGetString(url string) string {
+	resp, err := http.DefaultClient.Get(url)
+	exitOnBadResponse(resp, err)
 	defer resp.Body.Close()
-	var token string
-	_, err = fmt.Fscanf(resp.Body, "%s", &token)
+	var str string
+	_, err = fmt.Fscanf(resp.Body, "%s", &str)
 	exitOnError(err)
+	return str
+}
+
+func mustPostString(url, data string) {
+	exitOnBadResponse(http.DefaultClient.Post(url, "", bytes.NewBufferString(data)))
+}
+
+func getToken() string {
+	token := mustGetString(*url + "/task/new?name=" + *name)
+	mustPostString(*url+"/task/"+token, "")
 	return token
 }

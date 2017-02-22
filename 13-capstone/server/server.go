@@ -9,6 +9,7 @@ import (
 const (
 	square    = "square"
 	frequency = "frequency"
+	multiply  = "multiply"
 )
 
 type dummyFrequencyGenerator struct{}
@@ -28,6 +29,8 @@ func main() {
 	tm.next[""] = square
 	tm.problems[frequency] = &FrequencyProblemGenerator{&dummyFrequencyGenerator{}}
 	tm.next[square] = frequency
+	tm.problems[multiply] = &MultiplyProblemGenerator{}
+	tm.next[frequency] = multiply
 
 	http.Handle("/task/", http.StripPrefix("/task", tm.Mux()))
 

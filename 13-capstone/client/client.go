@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"flag"
-	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -42,10 +42,9 @@ func mustGetString(url string) string {
 	resp, err := http.DefaultClient.Get(url)
 	exitOnBadResponse(resp, err)
 	defer resp.Body.Close()
-	var str string
-	_, err = fmt.Fscanf(resp.Body, "%s", &str)
+	b, err := ioutil.ReadAll(resp.Body)
 	exitOnError(err)
-	return str
+	return string(b)
 }
 
 func mustPostString(url, data string) {

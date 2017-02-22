@@ -20,7 +20,7 @@ Lukasz Rozycki
  ==    equal
  !=    not equal
 - boolean, numeric, string, pointer
-- interface type, channel
+- interface type
 - struct or array containing above
 - Not slice, map, nor function
 
@@ -88,8 +88,6 @@ Lukasz Rozycki
 .play 07-map/for2.go /START/,/END/
 
 * Iteration
-- blank value
-.play 07-map/for3.go /START/,/END/
 - key and value
 .play 07-map/for4.go /START/,/END/
 - blank key
@@ -112,12 +110,8 @@ Lukasz Rozycki
 - assigning to a second variable
 .play 07-map/ref2.go /START/,/END/
 
-* Exercises
+* Exercises - bank
 
-- word count from A Tour of Go [[https://tour.golang.org/moretypes/23][Link]]
- func CountWords(s string) map[string]int
- use strings.Fields to split string
-- bank
  func deposit(bank map[string]int32, name string, amount int32) bool
  // if not a client, than assume initial deposit
  // if balance would overflow return false
@@ -131,16 +125,12 @@ Lukasz Rozycki
 * 
 
 * Solutions
-- Exercise 1
-.play 07-map/ex1.go /START/,/END/
+- Exercise deposit
+.code 07-map/ex2.go /DEPOSIT_S/,/DEPOSIT_E/
 
 * Solutions
-- Exercise 2 deposit
-.play 07-map/ex2.go /DEPOSIT_S/,/DEPOSIT_E/
-
-* Solutions
-- Exercise 2 withdraw
-.play 07-map/ex2.go /WITHDRAW_S/,/WITHDRAW_E/
+- Exercise withdraw
+.code 07-map/ex2.go /WITHDRAW_S/,/WITHDRAW_E/
 
 * Resources
 - [[https://blog.golang.org/go-maps-in-action][Go maps in action]] 

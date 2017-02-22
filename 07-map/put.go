@@ -11,7 +11,7 @@ func main() {
 	}
 	// START OMIT
 	ages["Baby"] = 1
-	ages["Baby2"] = 0
+	ages["SecondChild"] = 0
 	fmt.Println(ages)
 	// END OMIT
 }

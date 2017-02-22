@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 var (
@@ -20,6 +21,8 @@ func main() {
 	}
 
 	token := getToken()
+
+	squareProblem(token)
 }
 
 func exitOnError(err error) {
@@ -53,4 +56,12 @@ func getToken() string {
 	token := mustGetString(*url + "/task/new?name=" + *name)
 	mustPostString(*url+"/task/"+token, "")
 	return token
+}
+
+func squareProblem(token string) {
+	url := *url + "/task/square/" + token
+	number, err := strconv.Atoi(mustGetString(url))
+	exitOnError(err)
+	number = number * number
+	mustPostString(url, strconv.Itoa(number))
 }

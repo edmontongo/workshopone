@@ -47,7 +47,7 @@ Go provides *three* forms of `for` statement:
 
 - First form: C-style `for`
 - Second form: C-style `while`
-- Third form: Python-style `for`
+- Third form: Python-style `for`  (Covered after lunch)
 
 We'll look at each separately...
 
@@ -57,7 +57,7 @@ We'll look at each separately...
 
 - *No* parentheses
 - *Required* curly braces: `{` `}`
-- Otherwise, the usual three part: initialization, condition, and update
+- Otherwise, the usual three parts: initialization, condition, and update
 
 * for: C-style `while'
 
@@ -74,7 +74,11 @@ We'll look at each separately...
 
 * switch (value)
 
+.play -edit 05-control-structuRes/switchvalue.go /START OMIT/,/END OMIT/
+
 * switch (conditions)
+
+.play -edit 05-control-structuRes/switchcondition.go /START OMIT/,/END OMIT/
 
 * Questions?
 

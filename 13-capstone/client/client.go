@@ -2,7 +2,9 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
+	"net/http"
 )
 
 var (
@@ -16,4 +18,21 @@ func main() {
 		log.Fatal("Name flag is required!")
 	}
 
+	token := getToken()
+}
+
+func exitOnError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func getToken() string {
+	resp, err := http.DefaultClient.Get(*url + "/task/new?name=" + *name)
+	exitOnError(err)
+	defer resp.Body.Close()
+	var token string
+	_, err = fmt.Fscanf(resp.Body, "%s", &token)
+	exitOnError(err)
+	return token
 }

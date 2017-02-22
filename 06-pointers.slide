@@ -15,7 +15,8 @@ matthias@bellstone.ca
 
 * In case you forgot...
 
-<Diagram>
+.image 06-pointers/pointers.png _ 450
+.caption _Pointer_Diagram_ from [[https://commons.wikimedia.org/wiki/File:Pointers.svg][Wikipedia]]
 
 * Taking an address
 

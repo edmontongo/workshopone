@@ -35,9 +35,9 @@ func (sp SquareProblem) Validate(r io.Reader) bool {
 	b := make([]byte, 32)
 	n, err := r.Read(b)
 	switch {
-	case err != io.EOF:
-		log.Println("Failed to parse user's number: ", err.Error())
 	case n > 16:
+	case err != io.EOF && err != nil:
+		log.Println("Failed to parse user's number: ", err.Error())
 	case string(b[0:n]) != fmt.Sprint(sp.square*sp.square):
 	default:
 		return true

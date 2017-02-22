@@ -37,3 +37,9 @@ Write a function to calculate π
 - Use the Gregory-Leibniz series: _(4/1)_-_(4/3)_+_(4/5)_-_(4/7)_+_(4/9)_-_(4/11)_..._
 - Initially use 100 iterations.
 - Can you allow the user to specify a precision in decimal digits. ie, 2 = 3.14. Perform no more iterations than necessary.
+
+* Solution 1
+
+- Write a function that accepts two numbers, and prints a multiplication table between them
+
+.play -edit 06a-advanced-exercises/solution.go /BEGIN OMIT/,/END OMIT/

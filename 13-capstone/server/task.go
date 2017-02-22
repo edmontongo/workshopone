@@ -16,6 +16,7 @@ type Task struct {
 	current struct {
 		name string
 		Problem
+		got bool
 	}
 }
 
@@ -26,6 +27,7 @@ type TaskMaster struct {
 	}
 	problems map[string]ProblemGenerator
 	next     map[string]string
+	sk       ScoreKeeper
 }
 
 func NewTaskMaster() *TaskMaster {
@@ -34,6 +36,7 @@ func NewTaskMaster() *TaskMaster {
 	tm.tasks.completed = map[string]*Task{}
 	tm.problems = map[string]ProblemGenerator{}
 	tm.next = map[string]string{}
+	tm.sk = ScoreKeeper{}
 	return &tm
 }
 
@@ -86,6 +89,9 @@ func (tm *TaskMaster) nextTask(token string, task *Task) {
 		return
 	}
 
+	task.points++
+	tm.sk.UpdateScore(task)
+	task.current.got = false
 	task.current.name = next
 	task.current.Problem = tm.problems[next].Generate()
 }

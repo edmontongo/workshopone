@@ -36,6 +36,7 @@ func main() {
 	tm.next[multiply] = operations
 
 	http.Handle("/task/", http.StripPrefix("/task", tm.Mux()))
+	http.Handle("/status/", http.StripPrefix("/status", tm.sk))
 
 	err := http.ListenAndServe(host, nil)
 	if err != nil {

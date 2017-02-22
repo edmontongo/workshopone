@@ -15,7 +15,8 @@ matthias@bellstone.ca
 
 * In case you forgot...
 
-<Diagram>
+.image 06-pointers/pointers.png _ 450
+.caption _Pointer_Diagram_ from [[https://commons.wikimedia.org/wiki/File:Pointers.svg][Wikipedia]]
 
 * Taking an address
 
@@ -42,3 +43,12 @@ matthias@bellstone.ca
 * nil exists
 
 .play 06-pointers/nil.go /BEGIN OMIT/,/END OMIT/
+
+* Questions?
+
+* Exercises
+
+Exercise 1
+
+- Create a function that accepts an integer as a pointer
+- Square the value that is pointed to

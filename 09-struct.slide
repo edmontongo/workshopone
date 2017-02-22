@@ -98,3 +98,24 @@ Make a simple model of bank account using structs and functions.
 - Create a struct for someone's bank account, including a name, account balance, and account type.
 - Write a function which takes the struct as an argument and prints information about the account.
 - Write the functions Withdraw and Deposit which take the struct and a positive amount and update the account balance.
+
+* Solution
+
+- Create an enumerated constant for a bank account type: Checking or Savings.
+- Create a struct for someone's bank account, including a name, account balance, and account type.
+
+.play -edit 09-struct/solution.go /START TYPE/,/END TYPE/
+
+* Solution
+
+- Write a function which takes the struct as an argument and prints information about the account.
+
+.play -edit 09-struct/solution.go /START PRINT/,/END PRINT/
+.play -edit 09-struct/solution.go /START PRINT MAIN/,/END PRINT MAIN/
+
+* Solution
+
+- Write the functions Withdraw and Deposit which take the struct and a positive amount and update the account balance.
+
+.play -edit 09-struct/solution.go /START WITHDRAW/,/END WITHDRAW/
+.play -edit 09-struct/solution.go /START WITHDRAW MAIN/,/END WITHDRAW MAIN/

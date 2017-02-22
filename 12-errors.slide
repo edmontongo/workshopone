@@ -1,29 +1,210 @@
 Errors in Go
+Gerrit Renker
 22 Feb 2017
 Tags: edmontongo, golang, workshop
 
+* Talk Structure
+
+1. Introduction
+2. Errors in Go
+3. Handling
+4. Patterns & Policies
+5. Exercises
+
+ "Knowledge rests not upon truth alone, but upon error also."
+ Carl Jung
+
+
 * 1. Introduction
 
-- the philosophy of error
-- error handling in other languages (contrast C/Java/Python, exceptions)
-- why Go errors are so simple: beauty/power in simplicity
-- error handling strategies: e.g. Erlang "let it crash"
+* Errors are inevitable, handling them not
 
-* 2. error handling of Go
+- typically during function/method execution
+- precondition not met - changing conditions
+- incomplete knowledge
+- human mistake
 
-proverbs
-- Errors are values.
-- Don't just check errors, handle them gracefully.
+ "Mistakes are a fact of life. It is the response to the error that counts."
+  N. Giovanni
 
-error interface
 
-errors.New, fmt.Errorf
-var Err* sentinel errors
-custom ThatError struct and Error()
+* Errors in Go vs other languages
 
-* 3. Outro section
+*C*:
+- no fixed convention (`NULL`, `-1`, `errno`, `ERRPTR()`, ...)
+- frequent use of `goto`
 
-- advanced error handling in go
-- error handling patterns
-- exercise
+*Java/Python*: `exceptions`
+- avoid `goto` problem
+- _interfere_with_normal_control_flow_ (`try` .. `{` `try` .. `{` `try` ... `{` ... `catch` ...)
+- complex stack traces
 
+*Go*: _errors_are_values_
+- simple concept (Pike: "Simplicity is hard")
+- _integrate_better_in_normal_control_flow_
+- allow/require user to define policy
+
+ "Simplicity is prerequisite for reliability." -- E.W. Dijkstra
+
+* 2. Errors In Go
+
+* Proverb 1: Errors are  values
+
+Dedicated valuev/ariable:
+
+  value, ok := myHashMap["key"]
+  if !ok {
+     // key error
+  }
+
+More frequently:
+
+  file, err := os.Open("/etc/passwd")
+  if err != nil {
+     log.Fatalf("Failed to open file: %s", err)
+  }
+
+
+* Proverb 1: Errors Are Values
+
+_Interface_Definition_:
+
+  type error interface {
+     Error() string
+  }
+
+
+* Proverb 1: Errors Are Values
+
+_Interface_Definition_:
+
+  type error interface {
+     Error() string
+  }
+
+_Go_stdlib_:
+
+  // errorString is a trivial implementation of error.
+  type errorString struct {
+       s string
+  }
+
+  func (e *errorString) Error() string {
+       return e.s
+  }
+
+* Go errors package
+
+  // Package errors implements functions to manipulate errors.
+  package errors
+
+  type errorString struct {
+       s string
+  }
+
+  func New(text string) error {
+       return &errorString{text}
+  }
+
+*Usage*:
+.play 12-errors/errors_package.go /oops!/,/Annotated/
+
+* 3. Handling - Proverb 2: Don't just check errors, handle them gracefully
+
+* 3.1 Propagation
+
+.image 12-errors/images/unexpected-error.jpg _ 600
+
+
+* 3.1 Propagation
+
+By _chaining_ annotations:
+
+.play 12-errors/annotations.go /func foo/,
+
+* 3.2 Retry
+
+
+.play 12-errors/retry.go /func main/,
+
+Good for _temporary_condition_ (503 - _Service_Unavailable_)
+
+* 3.3 Exit or at least log problems
+
+.play 12-errors/exit_and_log.go /fatal/,
+
+* Proverb 3: Don't panic
+
+- Erlang "let it crash" has no Go counterpart
+- single `panic` brings entire program down
+
+.play 12-errors/panic.go /func main/,
+
+
+* 4. Patterns & Policies
+
+* 4.1 "Happy Path"
+
+  val, err := ComputeClickCounts()
+  if err != nil {
+         log.Fatalf("failed to get user stats: %s", err)
+  }
+
+  acc, err := IntegrateTimeSeries(time.Now(), val)
+  if err != nil {
+         log.Fatalf("value error in integration: %s", err)
+  }
+
+  total, err := ExtractTotals(acc)
+  if err != nil {
+         log.Fatalf("numbers don't add up: %s", err)
+  }
+
+  fmt.Println("Your monthly credit card bill will be", total)
+
+* 4.2 Track error internally
+
+.play 12-errors/scanner.go /const/,
+
+* 4.3 Test behaviour, not literal value
+
+Error _value_literals_ are brittle:
+.play 12-errors/eof.go /This/,/^\s+}/
+
+
+Test for _behaviour_ instead (`os`):
+
+     func IsExist(err error) bool
+     func IsNotExist(err error) bool
+     func IsPermission(err error) bool
+
+Similar (`net` package):
+
+    func (e *DNSError) Temporary() bool  // temporary problem - retry!
+    func (e *DNSError) Timeout() bool    // lookup timed out
+
+* 5. Conclusion
+
+- Go errors are simple values
+- Building blocks for larger abstractions
+
+* 5. Exercises
+
+1. Go panics on divide-by-zero. Define a numeric `Divider` error type,
+   which returns "invalid number" if the corresponding number is 0.
+
+   func invert(x int) (int, error) {
+        if x == 0 {
+           return 0, DividerErr(x)
+        }
+        return 1/x, nil
+   }
+
+2. Syscall.Errno contains error values that are typical on Linux/Unix servers.
+   Create a wrapper `struct` `ConnectionError` which implements
+
+   func (c ConnectionError) Timeout()   bool // true for syscall.ETIMEDOUT
+   func (c ConnectionError) Temporary() bool // true for syscall.EBUSY, syscall.EINPROGRESS
+   func (c ConnectionError) IsFatal()   bool // true for syscall.EHOSTDOWN, syscall.ENOTRECOVERABLE
+
+.link https://play.golang.org/p/00bJqeBq1a Playground template

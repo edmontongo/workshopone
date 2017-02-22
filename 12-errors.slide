@@ -198,12 +198,13 @@ Similar (`net` package):
 1. Go panics on divide-by-zero. Define a numeric `DividerErr` error type,
    which returns "invalid number" if the corresponding number is 0.
 
-   func invert(x int) (int, error) {
-        if x == 0 {
-           return 0, DividerErr(x)
+   // IntDivide returns integram num/denom and the remainder.
+   func IntDivide(num, denom int) (div, rem int, err error) {
+	       if denom == 0 {
+            return 0, 0, DivideErr(denom)
         }
-        return 1/x, nil
-   }
+		      return num/denom, num%denom, nil
+	  }
 
 2. Syscall.Errno contains error values that are typical on Linux/Unix servers.
    Create a wrapper `struct` `ConnectionError` which implements

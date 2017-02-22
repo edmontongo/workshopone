@@ -206,6 +206,8 @@ Similar (`net` package):
        return num/denom, num%denom, nil
    }
 
+.link https://play.golang.org/p/LXjxU_J4-K
+
 2. Syscall.Errno contains error values that are typical on Linux/Unix servers.
    Create a wrapper `struct` `ConnectionError` which implements
 

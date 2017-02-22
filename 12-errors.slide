@@ -200,11 +200,11 @@ Similar (`net` package):
 
    // IntDivide returns integram num/denom and the remainder.
    func IntDivide(num, denom int) (div, rem int, err error) {
-	       if denom == 0 {
-            return 0, 0, DivideErr(denom)
-        }
-		      return num/denom, num%denom, nil
-	  }
+       if denom == 0 {
+           return 0, 0, DivideErr(denom)
+       }
+       return num/denom, num%denom, nil
+   }
 
 2. Syscall.Errno contains error values that are typical on Linux/Unix servers.
    Create a wrapper `struct` `ConnectionError` which implements

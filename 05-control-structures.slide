@@ -87,7 +87,7 @@ We'll look at each separately...
 Exercise 1
 
 - Write fizzbuzz for the numbers 1-100
-- If the number is a multipe of 3, write fizz
-- If the number is a multipe of 5, write buzz
-- If the number is a multipe of 3 and 5, write fizzbuzz
+- If the number is a multiple of 3, write fizz
+- If the number is a multiple of 5, write buzz
+- If the number is a multiple of 3 and 5, write fizzbuzz
 - Otherwise print the number

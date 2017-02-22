@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"flag"
 	"io/ioutil"
 	"log"
@@ -25,6 +26,7 @@ func main() {
 
 	squareProblem(token)
 	frequencyProblem(token)
+	multiplyProblem(token)
 }
 
 func exitOnError(err error) {
@@ -47,6 +49,14 @@ func mustGetString(url string) string {
 	b, err := ioutil.ReadAll(resp.Body)
 	exitOnError(err)
 	return string(b)
+}
+
+func mustGetJSON(url string, v interface{}) {
+	resp, err := http.DefaultClient.Get(url)
+	exitOnBadResponse(resp, err)
+	defer resp.Body.Close()
+	enc := json.NewDecoder(resp.Body)
+	exitOnError(enc.Decode(v))
 }
 
 func mustPostString(url, data string) {
@@ -93,4 +103,15 @@ func frequencyProblem(token string) {
 	}
 
 	mustPostString(url, strings.Join([]string{topCounts[0].word, topCounts[1].word, topCounts[2].word}, ","))
+}
+
+func multiplyProblem(token string) {
+	url := *url + "/task/multiply/" + token
+	nums := []int{}
+	mustGetJSON(url, &nums)
+	answer := 1
+	for _, n := range nums {
+		answer *= n
+	}
+	mustPostString(url, strconv.Itoa(answer))
 }

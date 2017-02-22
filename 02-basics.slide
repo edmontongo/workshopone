@@ -69,4 +69,13 @@ Click *Share* to reveal a link to the playground code at this moment.
 
 2. Write a conversation between two "AI bots" using `Println`. Be sure to format your code correctly.
 
-Optional: Share your programs online with hashtag `#MacEwan` `#golang`.
+Optional: Share your programs online with hashtags `#MacEwan` `#golang`.
+
+* Solutions
+
+* Solutions
+
+.play -edit 02-basics/neighbour.go
+
+.play -edit 02-basics/bots.go
+

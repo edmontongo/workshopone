@@ -105,6 +105,17 @@ Not guaranteed.
 - fish, mouse, bunny should return fish, bunny
 - hamster, cow, dog, moose should return hamster, dog
 
+* Solutions
+
+* minMax
+
+.play -edit 08-slices/minmax.go /BEGIN OMIT/,/END OMIT/
+
+* filterPets
+
+.play -edit 08-slices/pets.go /BEGIN OMIT/,/END OMIT/
+
+
 # not covered:
 # capacity
 # third index

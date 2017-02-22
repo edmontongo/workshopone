@@ -39,6 +39,16 @@ james@bellstone.ca
 
 .play -edit 10-methods/incrementorPointer.go /BEGIN OMIT/,/END OMIT/
 
+* Method Composition
+
+* Person with Incrementor
+
+.play -edit 10-methods/incrementPerson.go /BEGIN OMIT/,/END OMIT/
+
+* Person with Embedded Incrementor
+
+.play -edit 10-methods/embeddedPerson.go /BEGIN OMIT/,/END OMIT/
+
 * Scope
 
 - As with functions and variables, capitalized methods can be accessed from other packages.

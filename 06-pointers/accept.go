@@ -6,14 +6,10 @@ import "fmt"
 func main() {
 	var c int = 5
 	mutate(&c)
-	fmt.Println("Mutate")
+	fmt.Println("Mutated value:", c)
 }
 
 func mutate(b *int) {
-	*b += 5
-}
-
-func copy(b int) {
 	*b += 5
 }
 

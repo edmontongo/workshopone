@@ -28,14 +28,24 @@ import (
 func writeDocumentation(wr http.ResponseWriter, req *http.Request) {
 	fmt.Fprintln(wr,
 		`To complete this exercise, you must retrieve and answer several problems.
-First, you have to get a token that will represnt your taskset. This is
-done with GET /task/?name=YOURNAME.
+First, you have to get a token that will represent a taskset. This is done
+with GET /task/?name=YOURNAME.
+
 Then you must confirm you have a token, simply with POST /task/TOKEN.
 The next problems are at the following locations, and must be done in
-the order provided:
+the order provided, and completed only once per TOKEN:
+
   /task/square/
   /task/frequency/
   /task/multiply/
-Using GET on the above URLs will provide task specific instructions.
+  /task/operations/
+
+- Using GET on the above URLs will provide task specific instructions.
+- A POST to the correct location with incorrect data will be responded
+to with a 406 NotAcceptable.
+- 404 NotFound is returned if a TOKEN is invalid, expired, or for a
+different task.
+
+To GET started, look up http.DefaultClient in godoc.
 `)
 }

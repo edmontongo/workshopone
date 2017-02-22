@@ -30,8 +30,15 @@ func (gen *OperationsProblemGenerator) Generate() Problem {
 func (gen *OperationsProblemGenerator) Documentation(wr io.Writer) {
 	fmt.Fprint(wr,
 		`Doing a GET with a token will provide 50-100 sets of operations encoded in
-a JSON array. To proceed to the next task, you must POST an array of
-solutions to the problems. There are four types: add, sub, mul, pow.`)
+a JSON array. To finish this last task, you must POST an array of solutions
+to the problems.
+
+There are four types of actions to take:
+  add: first + second
+  sub: first - second
+  mul: first * second
+  pow: first ^ second
+`)
 }
 
 type op string

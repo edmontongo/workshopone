@@ -24,6 +24,8 @@ func (gen *SquareProblemGenerator) Documentation(wr io.Writer) {
 	fmt.Fprint(wr,
 		`Doing a GET with a token will provide a number. To proceed to the next task,
 you must POST the number squared in response.
+
+bytes.NewBufferString will likely be helpful.
 `)
 }
 

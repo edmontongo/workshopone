@@ -49,6 +49,8 @@ func (gen *FrequencyProblemGenerator) Documentation(wr io.Writer) {
 and capitalization. To proceed to the next task, you must POST with the
 three most common words in that paragraph separated by commas. Order does
 not matter.
+
+strings.Split will likely be helpful.
 `)
 }
 

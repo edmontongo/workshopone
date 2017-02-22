@@ -30,7 +30,10 @@ func (gen *MultiplyProblemGenerator) Documentation(wr io.Writer) {
 	fmt.Fprint(wr,
 		`Doing a GET with a token will provide 3-7 positive integers encoded in a JSON
 array. To proceed to the next task, you must POST the numbers multiplied
-together.`)
+together.
+
+json.NewDecoder will likely be helpful.
+`)
 }
 
 type MultiplyProblem []int

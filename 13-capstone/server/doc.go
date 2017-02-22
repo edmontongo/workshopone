@@ -22,5 +22,15 @@ import (
 )
 
 func writeDocumentation(wr http.ResponseWriter, req *http.Request) {
-	fmt.Fprintln(wr, "Documentation!")
+	fmt.Fprintln(wr,
+		`To complete this exercise, you must retrieve and answer several problems.
+First, you have to get a token that will represnt your taskset. This is
+done with GET /task/?name=YOURNAME.
+Then you must confirm you have a token, simply with POST /task/TOKEN.
+The next problems are at the following locations, and must be done in
+the order provided:
+  /task/square/
+  /task/frequency/
+Using GET on the raw URLs will provide specific instructions.
+`)
 }

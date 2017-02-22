@@ -47,5 +47,11 @@ Things that implement Reader
 
 * Exercise
 
-Have them create something that implements the Reader interface and post that thing to a server.
-Can you piggy back on what Matthias is writing?
+.link https://golang.org/pkg/fmt/#Stringer Stringer
+
+- What is the output when you print a struct and a struct pointer?
+
+- After implementing the Stringer inteface for your struct with a value receiver. What is the output when you print a struct and a struct pointer?
+
+- After implementing the Stringer interface for your struct with a pointer receiver. What is the output when you print a struct and a struct pointer? 
+

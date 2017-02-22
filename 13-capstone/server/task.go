@@ -80,15 +80,15 @@ func (tm *TaskMaster) postID(wr http.ResponseWriter, req *http.Request) {
 }
 
 func (tm *TaskMaster) nextTask(token string, task *Task) {
-	next := tm.next[task.current.name]
+	task.points++
+	tm.sk.UpdateScore(task)
 
+	next := tm.next[task.current.name]
 	if next == "" {
 		delete(tm.active, token)
 		return
 	}
 
-	task.points++
-	tm.sk.UpdateScore(task)
 	task.current.got = false
 	task.current.name = next
 	task.current.Problem = tm.problems[next].Generate()
@@ -123,6 +123,11 @@ func (tm *TaskMaster) handleTask(name string) http.HandlerFunc {
 
 		switch req.Method {
 		case "GET":
+			if !task.current.got {
+				task.points++
+				task.current.got = true
+				tm.sk.UpdateScore(task)
+			}
 			task.current.Send(wr)
 		case "POST":
 			defer req.Body.Close()
@@ -149,7 +154,7 @@ func (tm *TaskMaster) newToken(wr http.ResponseWriter, req *http.Request) {
 
 	token := uuid.New().String()
 	tm.Lock()
-	tm.tasks.active[token] = &Task{name: name}
+	tm.active[token] = &Task{name: name, points: 1}
 	tm.Unlock()
 
 	fmt.Fprint(wr, token)

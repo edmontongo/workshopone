@@ -2,33 +2,33 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func main() {
-	printTable(2, 7)
+	multiplicationTable(2, 7)
 }
 
 // BEGIN OMIT
-func printTable(a, b int) {
-	// Print header
-	fmt.Printf("   X|")
-	for j := a; j <= b; j++ {
-		fmt.Printf("%4d", j)
+func multiplicationTable(low, high int) {
+	maxwidth := len(strconv.Itoa(high*high)) + 1
+	highwidth := len(strconv.Itoa(high))
+	fmt.Printf("%*s |", highwidth, "X")
+	for i := low; i <= high; i++ {
+		fmt.Printf("%*d", maxwidth, i)
 	}
 	fmt.Printf("\n")
 
-	// Print divider
-	fmt.Printf("----+")
-	for j := a; j <= b; j++ {
-		fmt.Printf("----")
+	// print lines
+	for i := 0; i < highwidth+(maxwidth*(high-low+1))+2; i++ {
+		fmt.Printf("-")
 	}
 	fmt.Printf("\n")
 
-	// Print numbers
-	for i := a; i <= b; i++ {
-		fmt.Printf("%4d|", i)
-		for j := a; j <= b; j++ {
-			fmt.Printf("%4d", i*j)
+	for i := low; i <= high; i++ {
+		fmt.Printf("%*d |", highwidth, i)
+		for j := low; j <= high; j++ {
+			fmt.Printf("%*d", maxwidth, i*j)
 		}
 		fmt.Printf("\n")
 	}

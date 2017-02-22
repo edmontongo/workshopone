@@ -6,6 +6,7 @@ import (
 	"flag"
 	"io/ioutil"
 	"log"
+	"math"
 	"net/http"
 	"strconv"
 	"strings"
@@ -27,6 +28,7 @@ func main() {
 	squareProblem(token)
 	frequencyProblem(token)
 	multiplyProblem(token)
+	operationsProblem(token)
 }
 
 func exitOnError(err error) {
@@ -61,6 +63,13 @@ func mustGetJSON(url string, v interface{}) {
 
 func mustPostString(url, data string) {
 	exitOnBadResponse(http.DefaultClient.Post(url, "", bytes.NewBufferString(data)))
+}
+
+func mustPostJSON(url string, v interface{}) {
+	buf := &bytes.Buffer{}
+	enc := json.NewEncoder(buf)
+	exitOnError(enc.Encode(v))
+	exitOnBadResponse(http.DefaultClient.Post(url, "", buf))
 }
 
 func getToken() string {
@@ -114,4 +123,31 @@ func multiplyProblem(token string) {
 		answer *= n
 	}
 	mustPostString(url, strconv.Itoa(answer))
+}
+
+func operationsProblem(token string) {
+	url := *url + "/task/operations/" + token
+	ops := []struct {
+		Op            string
+		First, Second int
+	}{}
+	mustGetJSON(url, &ops)
+	answers := []int{}
+	for _, op := range ops {
+		ans := 0
+		switch op.Op {
+		case "add":
+			ans = op.First + op.Second
+		case "sub":
+			ans = op.First - op.Second
+		case "mul":
+			ans = op.First * op.Second
+		case "pow":
+			ans = int(math.Pow(float64(op.First), float64(op.Second)))
+		default:
+			panic(op.Op)
+		}
+		answers = append(answers, ans)
+	}
+	mustPostJSON(url, answers)
 }

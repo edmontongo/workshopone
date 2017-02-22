@@ -20,29 +20,29 @@ matthias@bellstone.ca
 
 * Taking an address
 
-.play 06-pointers/address.go /var/,/fmt.Print/
+.play -edit 06-pointers/address.go /var/,/fmt.Print/
 
 * Declaring a pointer
 
-.play 06-pointers/declare.go /var a/,/&c/
+.play -edit 06-pointers/declare.go /var a/,/&c/
 
 * Dereferencing a pointer
 
-.play 06-pointers/deref.go /BEGIN OMIT/,/END OMIT/
+.play -edit 06-pointers/deref.go /BEGIN OMIT/,/END OMIT/
 
 * Accepting an address
 
-.play 06-pointers/accept.go /BEGIN OMIT/,/END OMIT/
+.play -edit 06-pointers/accept.go /BEGIN OMIT/,/END OMIT/
 
 * Returning an address
 
-.play 06-pointers/return.go /BEGIN OMIT/,/END OMIT/
+.play -edit 06-pointers/return.go /BEGIN OMIT/,/END OMIT/
 
 # Yay, garbage collector!
 
 * nil exists
 
-.play 06-pointers/nil.go /BEGIN OMIT/,/END OMIT/
+.play -edit 06-pointers/nil.go /BEGIN OMIT/,/END OMIT/
 
 * Questions?
 

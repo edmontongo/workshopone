@@ -42,4 +42,10 @@ Write a function to calculate π
 
 - Write a function that accepts two numbers, and prints a multiplication table between them
 
-.play -edit 06a-advanced-exercises/solution.go /BEGIN OMIT/,/END OMIT/
+.play -edit 06a-advanced-exercises/solution1.go /BEGIN OMIT/,/END OMIT/
+
+* Solution 2
+
+Write a function that calculates the nth Fibonacci number.
+
+.play -edit 06a-advanced-exercises/solution2.go /BEGIN OMIT/,/END OMIT/

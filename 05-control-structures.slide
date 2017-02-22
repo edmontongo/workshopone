@@ -74,12 +74,12 @@ We'll look at each separately...
 
 * switch (value)
 
-.play -edit 05-control-structuRes/switchvalue.go /START OMIT/,/END OMIT/
+.play -edit 05-control-structures/switchvalue.go /START OMIT/,/END OMIT/
 
 * switch (conditions)
 
-.play -edit 05-control-structuRes/switchcondition.go /START OMIT/,/END OMIT/
+.play -edit 05-control-structures/switchcondition.go /START OMIT/,/END OMIT/
 
 * Questions?
 
-* Exercises 
+* Exercises

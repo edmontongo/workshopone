@@ -148,7 +148,7 @@ func (tm *TaskMaster) newToken(wr http.ResponseWriter, req *http.Request) {
 	tm.tasks.active[token] = &Task{name: name}
 	tm.Unlock()
 
-	fmt.Fprintln(wr, token)
+	fmt.Fprint(wr, token)
 }
 
 func (tm *TaskMaster) completeTask(wr http.ResponseWriter, token string) {

@@ -154,7 +154,9 @@ func (tm *TaskMaster) newToken(wr http.ResponseWriter, req *http.Request) {
 
 	token := uuid.New().String()
 	tm.Lock()
-	tm.active[token] = &Task{name: name, points: 1}
+	t := &Task{name: name, points: 1}
+	tm.active[token] = t
+	tm.sk.UpdateScore(t)
 	tm.Unlock()
 
 	fmt.Fprint(wr, token)

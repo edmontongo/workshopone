@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"strings"
 )
 
 var (
@@ -23,6 +24,7 @@ func main() {
 	token := getToken()
 
 	squareProblem(token)
+	frequencyProblem(token)
 }
 
 func exitOnError(err error) {
@@ -63,4 +65,32 @@ func squareProblem(token string) {
 	exitOnError(err)
 	number = number * number
 	mustPostString(url, strconv.Itoa(number))
+}
+
+func frequencyProblem(token string) {
+	url := *url + "/task/frequency/" + token
+	paragraph := mustGetString(url)
+
+	counts := map[string]int{}
+	for _, word := range strings.Split(paragraph, " ") {
+		counts[word] = counts[word] + 1
+	}
+	topCounts := [3]struct {
+		word  string
+		count int
+	}{}
+	for word, count := range counts {
+		for i, tc := range topCounts {
+			if tc.count > count {
+				continue
+			}
+			if i > 0 {
+				topCounts[i-1] = tc
+			}
+			topCounts[i].word = word
+			topCounts[i].count = count
+		}
+	}
+
+	mustPostString(url, strings.Join([]string{topCounts[0].word, topCounts[1].word, topCounts[2].word}, ","))
 }

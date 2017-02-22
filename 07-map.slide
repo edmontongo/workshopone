@@ -120,7 +120,7 @@ Lukasz Rozycki
  func withdraw(bank map[string]int32, name string, amount int32, maxOverdraft int32) bool
  // final balance cannot be less than max_overdraft
  // only clients can withdraw
- // amount and maxOverdraft cannot be negative
+ // amount cannot be negative
 
 * 
 

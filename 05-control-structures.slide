@@ -2,31 +2,75 @@ Go Control Structures
 22 Feb 2017
 Tags: edmonton-go, golang, workshop, workshop-one, control-structures
 
-Matthias Stone
-CTO, Bellstone Engineering
-matthias@bellstone.ca
-@MatthiasStone
-+MatthiasStone
+Nicholas Boers
+MacEwan University
+boersn@macewan.ca
 
-* If the beginning...
 
 * if
 
-* scope
+.play -edit 05-control-structures/if.go /START OMIT/,/END OMIT/
 
-* if else
+- *No* parentheses when they're redundant: `(` `)`
+- *Required* curly braces: `{` `}`
 
-* if else if
+* Scope
 
-* if with simple statement
+.play -edit 05-control-structures/if.go /START OMIT/,/END OMIT/
+
+- Lexically scoped using blocks
+- Curly braces delimit blocks
+
+* if/else
+
+.play -edit 05-control-structures/ifelse.go /START OMIT/,/END OMIT/
+
+- Nothing to see here... (yawn)
+
+* if/else if/...
+
+.play -edit 05-control-structures/ifelseif.go /START OMIT/,/END OMIT/
+
+- `else if` is handled like C, rather than like Python
+
+* if with a simple statement
+
+- Something *new*!
+
+.play -edit 05-control-structures/simpstmt.go /START OMIT/,/END OMIT/
+
+- A note on scope...
 
 * for
 
-* for (ever)
+Go provides *three* forms of `for` statement:
 
-* for (condition)
+- First form: C-style `for`
+- Second form: C-style `while`
+- Third form: Python-style `for`
 
-* for (classic)
+We'll look at each separately...
+
+* for: C-style `for`
+
+.play -edit 05-control-structures/for.go /START OMIT/,/END OMIT/
+
+- *No* parentheses
+- *Required* curly braces: `{` `}`
+- Otherwise, the usual three part: initialization, condition, and update
+
+* for: C-style `while'
+
+- Something *different*!
+
+.play -edit 05-control-structures/forwhile.go /START OMIT/,/END OMIT/
+
+- `while` doesn't exist in Go
+- `for` provides the same functionality
+
+* for: infinite loops
+
+.play -edit 05-control-structures/forinf.go /START OMIT/,/END OMIT/
 
 * switch (value)
 
@@ -34,4 +78,4 @@ matthias@bellstone.ca
 
 * Questions?
 
-* Exercises
+* Exercises 

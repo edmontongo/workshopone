@@ -198,7 +198,7 @@ Similar (`net` package):
 1. Go panics on divide-by-zero. Define a numeric `DividerErr` error type,
    which returns "invalid number" if the corresponding number is 0.
 
-   // IntDivide returns integram num/denom and the remainder.
+   // IntDivide returns integral num/denom and the remainder.
    func IntDivide(num, denom int) (div, rem int, err error) {
        if denom == 0 {
            return 0, 0, DivideErr(denom)

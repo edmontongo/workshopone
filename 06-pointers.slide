@@ -52,3 +52,10 @@ Exercise 1
 
 - Create a function that accepts an integer as a pointer
 - Square the value that is pointed to
+
+* Solution
+
+- Create a function that accepts an integer as a pointer
+- Square the value that is pointed to
+
+.play -edit 06-pointers/solution.go /BEGIN OMIT/,/END OMIT/

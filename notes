@@ -1,0 +1,104 @@
+range 3 ways
+ - underscore to ignore it "The blank identifier"
+ - keyword
+	for key, value := range oldMap {
+	    newMap[key] = value
+	}
+
+	If you only need the first item in the range (the key or index), drop the second:
+
+	for key := range m {
+	    if key.expired() {
+		delete(m, key)
+	    }
+	}
+
+	If you only need the second item in the range (the value), use the blank identifier, an underscore, to discard the first:
+
+	sum := 0
+	for _, value := range array {
+	    sum += value
+	}
+
+	Map iteration random order
+	The iteration order over maps is not specified and is not guaranteed to be the same from one iteration to the next. If map entries that have not yet been reached are removed during iteration, the corresponding iteration values will not be produced. If map entries are created during iteration, that entry may be produced during the iteration or may be skipped. The choice may vary for each entry created and from one iteration to the next. If the map is nil, the number of iterations is 0.
+
+	Since Go 1 the runtime randomizes map iteration order, as programmers relied on the stable iteration order of the previous implementation. If you require a stable iteration order you must maintain a separate data structure that specifies that order. 
+
+	Range expression                          1st value          2nd value
+
+	array or slice  a  [n]E, *[n]E, or []E    index    i  int    a[i]       E
+	string          s  string type            index    i  int    see below  rune
+	map             m  map[K]V                key      k  K      m[k]       V
+	channel         c  chan E, <-chan E       element  e  E
+
+Exercises: 
+ - word count from go playground
+   - provide package and method to split input
+	package main
+	
+	import (
+		"golang.org/x/tour/wc"
+		"strings"
+	)
+
+	func WordCount(s string) map[string]int {
+		m := make(map[string]int)
+		for _, element := range strings.Fields(s) {
+		  m[element] += 1
+		}
+		return m
+	}
+
+	func main() {
+		wc.Test(WordCount)
+	}
+ - bank account with balance
+  - boolean deposit(bank, name, amount)
+   - if not a client, than assume initial deposit
+   - if value exceeds max int return false
+   - maximum number of clients?
+  - boolean withdraw(bank, name, amount)
+   - return false if not successful
+   - negative limit is -200
+   - new client cannot have overdraft
+
++Map, also known as Dictionary or hash table fast lookups, adds, and deletes
+ x dictionaries in Python, hashes in Ruby, and objects in JavaScript
+
++map[key_type]value_type
+
++map keys may be of any type that is comparable. in short, comparable types are boolean, numeric, string, pointer, channel, and interface types, and structs or arrays that contain only those types
++Notably absent from the list are slices, maps, and functions; these types cannot be compared using ==, and may not be used as map keys.
+
++Usage
+ + [] operator Index expressions
+ + delete function
+  + The type of k must be assignable to the key type of m.
+  + delete(m, k)  // remove element m[k] from map m
+  + If the map m is nil or the element m[k] does not exist, delete is a no-op.
+
++Creating map
+  x "make" to create empty map - initial capacity
+  + composite literal definition to create filled map
+   + specify types in declaration vs specify type in literal
+
++do set with map
++ , ok notation
+ + - 0 value bcs its not there vs explicit 0
+ + map["sth"] += 1
+  + count even / odd with True / False
+
++Maps are not safe for concurrent use
+
++reference type
+ +passing to a function
+ +assigning second handle
+
+x Maps internals?
+
++Bib
++Go maps in action - https://blog.golang.org/go-maps-in-action
++Effective Go - Maps https://golang.org/doc/effective_go.html#maps
++A Tour of Go - Maps (https://tour.golang.org/moretypes/19)Learn_G
++Learn Go - The ever versatile map

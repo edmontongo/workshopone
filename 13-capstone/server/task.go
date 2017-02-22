@@ -22,21 +22,19 @@ type Task struct {
 
 type TaskMaster struct {
 	sync.Mutex
-	tasks struct {
-		active, completed map[string]*Task
-	}
+	active   map[string]*Task
 	problems map[string]ProblemGenerator
 	next     map[string]string
 	sk       ScoreKeeper
 }
 
 func NewTaskMaster() *TaskMaster {
-	tm := TaskMaster{}
-	tm.tasks.active = map[string]*Task{}
-	tm.tasks.completed = map[string]*Task{}
-	tm.problems = map[string]ProblemGenerator{}
-	tm.next = map[string]string{}
-	tm.sk = ScoreKeeper{}
+	tm := TaskMaster{
+		active:   map[string]*Task{},
+		problems: map[string]ProblemGenerator{},
+		next:     map[string]string{},
+		sk:       ScoreKeeper{},
+	}
 	return &tm
 }
 
@@ -72,7 +70,7 @@ func (tm *TaskMaster) postID(wr http.ResponseWriter, req *http.Request) {
 	tm.Lock()
 	defer tm.Unlock()
 
-	task, ok := tm.tasks.active[token]
+	task, ok := tm.active[token]
 	if !ok || task.current.name != "" {
 		wr.WriteHeader(http.StatusNotFound)
 		return
@@ -85,7 +83,7 @@ func (tm *TaskMaster) nextTask(token string, task *Task) {
 	next := tm.next[task.current.name]
 
 	if next == "" {
-		delete(tm.tasks.active, token)
+		delete(tm.active, token)
 		return
 	}
 
@@ -117,7 +115,7 @@ func (tm *TaskMaster) handleTask(name string) http.HandlerFunc {
 		tm.Lock()
 		defer tm.Unlock()
 
-		task, ok := tm.tasks.active[token]
+		task, ok := tm.active[token]
 		if !ok || task.current.name != name {
 			wr.WriteHeader(http.StatusNotFound)
 			return
@@ -155,20 +153,4 @@ func (tm *TaskMaster) newToken(wr http.ResponseWriter, req *http.Request) {
 	tm.Unlock()
 
 	fmt.Fprint(wr, token)
-}
-
-func (tm *TaskMaster) completeTask(wr http.ResponseWriter, token string) {
-	tm.Lock()
-	defer tm.Unlock()
-	_, active := tm.tasks.active[token]
-	_, completed := tm.tasks.completed[token]
-	switch {
-	case active:
-		tm.tasks.completed[token] = tm.tasks.active[token]
-		delete(tm.tasks.active, token)
-	case completed:
-		wr.WriteHeader(http.StatusGone)
-	default:
-		wr.WriteHeader(http.StatusNotFound)
-	}
 }

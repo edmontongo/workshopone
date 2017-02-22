@@ -65,6 +65,8 @@ Click *Share* to reveal a link to the playground code at this moment.
 
 * Exercise
 
-Ask your neighbour's name and modify the program to say hello to them.
+1. Ask your neighbour's name and modify the program to say hello to them.
 
-Optional: Share your program online with hashtag `#MacEwan` `#golang`.
+2. Write a conversation between two "AI bots" using `Println`. Be sure to format your code correctly.
+
+Optional: Share your programs online with hashtag `#MacEwan` `#golang`.

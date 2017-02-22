@@ -49,3 +49,9 @@ Write a function to calculate π
 Write a function that calculates the nth Fibonacci number.
 
 .play -edit 06a-advanced-exercises/solution2.go /BEGIN OMIT/,/END OMIT/
+
+* Solution 3
+
+Write a function to calculate π
+
+.play -edit 06a-advanced-exercises/solution3.go /BEGIN OMIT/,/END OMIT/

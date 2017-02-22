@@ -35,16 +35,25 @@ func (c Complex) ToString() string {
 		c.Field1, c.Field2, c.Field3, time.Now().Format("15:04:05"))
 }
 
+type Composition struct {
+	Complex
+}
+
 // IMPLEMENT_END OMIT
 
 // USE_BEGIN OMIT
 func main() {
-	c := Complex{
+	cplx := Complex{
 		1,
 		"complex",
 		2.2,
 	}
-	strs := []Stringer{Simple("simple"), c}
+	composition := Composition{cplx}
+	strs := []Stringer{
+		Simple("simple"),
+		cplx,
+		composition,
+	}
 
 	printStrings(strs)
 }

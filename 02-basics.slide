@@ -10,7 +10,7 @@ gopher@nathany.com
 
 .link https://play.golang.org
 
-.play 02-basics/playground.go
+.play -edit 02-basics/playground.go
 
 Click *Run*.
 

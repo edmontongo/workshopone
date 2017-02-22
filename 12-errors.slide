@@ -109,7 +109,7 @@ _Go_stdlib_:
   }
 
 *Usage*:
-.play 12-errors/errors_package.go /oops!/,/Annotated/
+.play -edit 12-errors/errors_package.go /oops!/,/Annotated/
 
 * 3. Handling - Proverb 2: Don't just check errors, handle them gracefully
 
@@ -122,18 +122,18 @@ _Go_stdlib_:
 
 By _chaining_ annotations:
 
-.play 12-errors/annotations.go /func foo/,
+.play -edit 12-errors/annotations.go /func foo/,
 
 * 3.2 Retry
 
 
-.play 12-errors/retry.go /func main/,
+.play -edit 12-errors/retry.go /func main/,
 
 Good for _temporary_condition_ (503 - _Service_Unavailable_)
 
 * 3.3 Exit or at least log problems
 
-.play 12-errors/exit_and_log.go /fatal/,
+.play -edit 12-errors/exit_and_log.go /fatal/,
 
 - more elaborate variant
 - based on _type_assertion_
@@ -143,7 +143,7 @@ Good for _temporary_condition_ (503 - _Service_Unavailable_)
 - Erlang "let it crash" has no Go counterpart
 - single `panic` brings entire program down
 
-.play 12-errors/panic.go /func main/,
+.play -edit 12-errors/panic.go /func main/,
 
 
 * 4. Patterns & Policies
@@ -169,12 +169,12 @@ Good for _temporary_condition_ (503 - _Service_Unavailable_)
 
 * 4.2 Track error internally
 
-.play 12-errors/scanner.go /const/,
+.play -edit 12-errors/scanner.go /const/,
 
 * 4.3 Test behaviour, not literal value
 
 Error _value_literals_ are brittle:
-.play 12-errors/eof.go /This/,/^\s+}/
+.play -edit 12-errors/eof.go /This/,/^\s+}/
 
 
 Test for _behaviour_ instead (`os`):

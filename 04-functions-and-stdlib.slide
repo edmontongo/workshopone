@@ -8,19 +8,19 @@ james@bellstone.ca
 
 * Creating a Function
 
-.play 04-functions-and-stdlib/printint.go /BEGIN OMIT/,/END OMIT/
+.play -edit 04-functions-and-stdlib/printint.go /BEGIN OMIT/,/END OMIT/
 
 * Returning Values
 
-.play 04-functions-and-stdlib/addint.go /BEGIN OMIT/,/END OMIT/
+.play -edit 04-functions-and-stdlib/addint.go /BEGIN OMIT/,/END OMIT/
 
 * Importing Packages
 
-.play 04-functions-and-stdlib/import.go
+.play -edit 04-functions-and-stdlib/import.go
 
 * Importing Packages
 
-.play 04-functions-and-stdlib/strings.go
+.play -edit 04-functions-and-stdlib/strings.go
 
 * Documentation
 
@@ -52,17 +52,17 @@ james@bellstone.ca
 
 * Returning Multiple Values
 
-.play 04-functions-and-stdlib/pedanticroot.go /BEGIN OMIT/,/END OMIT/
+.play -edit 04-functions-and-stdlib/pedanticroot.go /BEGIN OMIT/,/END OMIT/
 
 * Scope
 
 - Variables outside of a function can be accessed from anywhere in the package
 
-.play 04-functions-and-stdlib/scope.go /BEGIN OMIT/,/END OMIT/
+.play -edit 04-functions-and-stdlib/scope.go /BEGIN OMIT/,/END OMIT/
 
 - It's necessary to declare the variable with the `var` keyword
 
-.play 04-functions-and-stdlib/badscope.go /BEGIN OMIT/,/END OMIT/
+.play -edit 04-functions-and-stdlib/badscope.go /BEGIN OMIT/,/END OMIT/
 
 * Scope: Sharing with other Packages
 

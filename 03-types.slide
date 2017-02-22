@@ -8,7 +8,7 @@ Brett McKay
 
 How to declare a variable:
 
-.play 03-types/declaration.go /BEGIN OMIT/,/END OMIT/
+.play -edit 03-types/declaration.go /BEGIN OMIT/,/END OMIT/
 
 What happens if you don't use a declared variable?
 
@@ -18,15 +18,15 @@ What happens if you don't use a declared variable?
 - Generally created using double quotes
 - Raw strings are created with back ticks
 
-.play 03-types/string.go /BEGIN OMIT/,/END OMIT/
+.play -edit 03-types/string.go /BEGIN OMIT/,/END OMIT/
 
 * Go Bools
 
 *Values*
-.play 03-types/bool.go /BEGIN OMIT/,/END OMIT/
+.play -edit 03-types/bool.go /BEGIN OMIT/,/END OMIT/
 
 What will happen?
-.play 03-types/conflict.go /BEGIN OMIT/,/END OMIT/
+.play -edit 03-types/conflict.go /BEGIN OMIT/,/END OMIT/
 
 
 * Type Systems
@@ -74,7 +74,7 @@ Is Go strongly or weakly typed?
 * Continued
 
 What will happen?
-.play 03-types/conflict-integer.go /BEGIN OMIT/,/END OMIT/
+.play -edit 03-types/conflict-integer.go /BEGIN OMIT/,/END OMIT/
 
 * Increment Example
 
@@ -84,13 +84,13 @@ What happens if you add 1?
 
 * Continued
 
-.play 03-types/increment.go /BEGIN OMIT/,/END OMIT/
+.play -edit 03-types/increment.go /BEGIN OMIT/,/END OMIT/
 
 * Overflow assingment
 
 What happens if you assign 128 to int8?
 
-.play 03-types/overflow.go /BEGIN OMIT/,/END OMIT/
+.play -edit 03-types/overflow.go /BEGIN OMIT/,/END OMIT/
 
 * Implementation specific
 

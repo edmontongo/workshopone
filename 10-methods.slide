@@ -8,45 +8,45 @@ james@bellstone.ca
 
 * Review: Functions
 
-.play 10-methods/printPerson.go /BEGIN OMIT/,/END OMIT/
+.play -edit 10-methods/printPerson.go /BEGIN OMIT/,/END OMIT/
 
 * Review: Defined types
 
-.play 10-methods/userType.go /BEGIN OMIT/,/END OMIT/
+.play -edit 10-methods/userType.go /BEGIN OMIT/,/END OMIT/
 
 * Method on a type
 
-.play 10-methods/methodPrintPerson.go /BEGIN OMIT/,/END OMIT/
+.play -edit 10-methods/methodPrintPerson.go /BEGIN OMIT/,/END OMIT/
 
 * Methods can change data
 
 # This code won't run because it doesn't have a pointer receiver.
 # The point of this slide is to show a common error when forgetting to use a pointer receiver, which will be explained in the next slide.
 
-.play 10-methods/incrementor.go /BEGIN OMIT/,/END OMIT/
+.play -edit 10-methods/incrementor.go /BEGIN OMIT/,/END OMIT/
 
 * Methods can change data by using pointer receivers
 
 - In order to change data, the method must act on a pointer.
 - The only necessary change to the `Incrementor` is to make the `Increment` function take a pointer.
 
-.play 10-methods/incrementorFixed.go /BEGIN OMIT/,/END OMIT/
+.play -edit 10-methods/incrementorFixed.go /BEGIN OMIT/,/END OMIT/
 
 * Go converts between pointer recievers and values automatically
 
 - On the last slide, an `Incrementor` value was used to call a pointer method.
 - Here, the variable `inc` is created as a pointer instead of as a value, but there's no need to change the rest of the code.
 
-.play 10-methods/incrementorPointer.go /BEGIN OMIT/,/END OMIT/
+.play -edit 10-methods/incrementorPointer.go /BEGIN OMIT/,/END OMIT/
 
 * Scope
 
 - As with functions and variables, capitalized methods can be accessed from other packages.
 - The incrementor's `int` is private, but all of the methods and the type are public.
 
-.play 10-methods/incrementorFixed.go /type/,/}/
+.play -edit 10-methods/incrementorFixed.go /type/,/}/
 
-.play 10-methods/incrementorFixed.go /func main/,/END OMIT/
+.play -edit 10-methods/incrementorFixed.go /func main/,/END OMIT/
 
 * Exercises
 

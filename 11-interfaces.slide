@@ -23,7 +23,7 @@ What behaviour does this interface demand?
 
 * Using Interfaces
 
-.play 11-interfaces/interface.go /USE_BEGIN OMIT/,/USE_END OMIT/
+.play -edit 11-interfaces/interface.go /USE_BEGIN OMIT/,/USE_END OMIT/
 
 * Empty Interface
 

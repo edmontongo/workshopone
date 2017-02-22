@@ -1,0 +1,38 @@
+Exercises
+22 Feb 2017
+Tags: edmonton-go, golang, workshop, workshop-one, pointers
+
+Matthias Stone
+CTO, Bellstone Engineering
+matthias@bellstone.ca
+@MatthiasStone
++MatthiasStone
+
+* Exercise One
+
+Write a function that accepts two numbers, and prints a multiplication table between them
+
+  multiplicationTable(4, 6)
+  // Output
+  X   4   5   6
+  4  16  20  24
+  5  20  25  30
+  6  24  30  36
+
+- Look into the _fmt_ package to understand how to print this better.
+- Can you make this prettier? Add lines to highlight the header row and column? A label?
+
+* Exercise Two
+
+Write a function that calculates the nth Fibonacci number.
+
+- 1, 1, 2, 3, 5, 8, 13...
+- Did you use a loop or recursion?
+- Do it the other way!
+
+* Exercise Three
+
+Write a function to calculate π
+- Use the Gregory-Leibniz series: _(4/1)_-_(4/3)_+_(4/5)_-_(4/7)_+_(4/9)_-_(4/11)_..._
+- Initially use 100 iterations.
+- Can you allow the user to specify a precision in decimal digits. ie, 2 = 3.14. Perform no more iterations than necessary.

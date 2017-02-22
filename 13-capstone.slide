@@ -1,4 +1,4 @@
-Capstone
+Webservice Exercise
 22 Feb 2017
 Tags: edmonton-go, golang, workshop, workshop-one, pointers
 
@@ -8,6 +8,33 @@ matthias@bellstone.ca
 @MatthiasStone
 +MatthiasStone
 
-* Capstone
+* What you have to do
+- Retrive information from a web service
+- Process this information somehow
+- Send a response to the webservice
 
-stretch goal
+* How does this happen
+- HTTP is a client-server protocol
+- To recieve data, a client will GET, and send with POST
+- These are HTTP _verbs_
+
+.play -edit 13-capstone/get.go
+
+* Key Go concepts required
+
+- Slices (of bytes) and string manipulation
+- Interfaces ([[https://golang.org/pkg/io/#Reader][Reader]], [[https://golang.org/pkg/io/#Writer][Writer]], [[https://golang.org/pkg/io/#Copy][Copy]])
+- Errors
+- Must be run in the real world
+
+  go run file.go
+
+* Interacting with the server
+
+First you must GET a TOKEN for the user "SlideDeck"
+
+.play -edit 13-capstone/token.go /BEGIN OMIT/,/END OMIT/
+
+Further instructions: [[http://workshop.bellstone.ca/task/][http://workshop.bellstone.ca/task/]]
+
+* Go!

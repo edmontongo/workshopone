@@ -36,11 +36,12 @@ func RenderGraphics() error {
 func main() {
 	for attempt := 1; attempt <= 5; attempt++ {
 		err := RenderGraphics() // HL
-		if err == nil {         // HL
-			fmt.Println("SUCCESS: Rendering finished")
-			break // HL
+		if err != nil {         // HL
+			fmt.Printf("FAIL: attempt #%d: %s\n", attempt, err)
+			time.Sleep(250 * time.Millisecond)
+			continue
 		}
-		fmt.Printf("FAIL: attempt #%d: %s\n", attempt, err)
-		time.Sleep(250 * time.Millisecond)
+		fmt.Println("SUCCESS: Rendering finished")
+		break // HL
 	}
 }

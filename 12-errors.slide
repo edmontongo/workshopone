@@ -52,7 +52,7 @@ Tags: edmontongo, golang, workshop
 
 * Proverb 1: Errors are  values
 
-Dedicated valuev/ariable:
+Dedicated value/variable:
 
   value, ok := myHashMap["key"]
   if !ok {
@@ -135,6 +135,9 @@ Good for _temporary_condition_ (503 - _Service_Unavailable_)
 
 .play 12-errors/exit_and_log.go /fatal/,
 
+- more elaborate variant
+- based on _type_assertion_
+
 * Proverb 3: Don't panic
 
 - Erlang "let it crash" has no Go counterpart
@@ -209,7 +212,7 @@ Similar (`net` package):
    func (c ConnectionError) Temporary() bool // true for syscall.EBUSY, syscall.EINPROGRESS
    func (c ConnectionError) IsFatal()   bool // true for syscall.EHOSTDOWN, syscall.ENOTRECOVERABLE
 
-.link https://play.golang.org/p/00bJqeBq1a Playground template
+.link https://play.golang.org/p/00bJqeBq1a
 
 
 * Resources

@@ -24,6 +24,8 @@ Tags: edmontongo, golang, workshop
 - incomplete knowledge
 - human mistake
 
+: *Failure*is*an*expected*condition.*
+
  "Mistakes are a fact of life. It is the response to the error that counts."
   N. Giovanni
 
@@ -40,7 +42,7 @@ Tags: edmontongo, golang, workshop
 - complex stack traces
 
 *Go*: _errors_are_values_
-- simple concept (Pike: "Simplicity is hard")
+- simple concept (Pike: [[https://talks.golang.org/2015/simplicity-is-complicated.slide#1]["Simplicity is hard"]])
 - _integrate_better_in_normal_control_flow_
 - allow/require user to define policy
 
@@ -113,7 +115,7 @@ _Go_stdlib_:
 
 * 3.1 Propagation
 
-.image 12-errors/images/unexpected-error.jpg _ 600
+.image 12-errors/images/unexpected-error.jpg _ 400
 
 
 * 3.1 Propagation
@@ -190,7 +192,7 @@ Similar (`net` package):
 
 * 5. Exercises
 
-1. Go panics on divide-by-zero. Define a numeric `Divider` error type,
+1. Go panics on divide-by-zero. Define a numeric `DividerErr` error type,
    which returns "invalid number" if the corresponding number is 0.
 
    func invert(x int) (int, error) {
@@ -208,3 +210,13 @@ Similar (`net` package):
    func (c ConnectionError) IsFatal()   bool // true for syscall.EHOSTDOWN, syscall.ENOTRECOVERABLE
 
 .link https://play.golang.org/p/00bJqeBq1a Playground template
+
+
+* Resources
+
+- [[http://www.se-radio.net/2017/01/se-radio-episode-280-gerald-weinberg-on-bugs-errors-and-software-quality/][Gerald Weinberg on Bugs Errors and Software Quality]]
+- [[https://go-proverbs.github.io/][Go Proverbs]] ([[https://www.youtube.com/watch?v=PAAkCSZUG1c][video]])
+- [[https://blog.golang.org/error-handling-and-go][Error handling and Go]]
+- [[https://blog.golang.org/defer-panic-and-recover][Defer, Panic, and Recover]]
+- Going Go - Error Handling [[https://www.goinggo.net/2014/10/error-handling-in-go-part-i.html][Part 1]], [[https://www.goinggo.net/2014/11/error-handling-in-go-part-ii.html][Part 2]]
+- Example of accumulating error internally: [[https://github.com/RobotsAndPencils/buford][Buford]] file [[https://github.com/RobotsAndPencils/buford/blob/master/pushpackage/pushpackage.go][pushpackage.go]] ([[https://github.com/RobotsAndPencils/buford#website-push][usage]])

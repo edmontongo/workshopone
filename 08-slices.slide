@@ -94,7 +94,16 @@ Not guaranteed.
 
 * Exercise
 
+1. Write a function that accepts a slice of integers and returns the smallest and largest integer. Use the function from your main function for these values:
 
+- Fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21 should return 0, 21
+- Random 18, 44, 45, 97, 81, 2, 19, 19, 27 should return 2, 97
+
+2. Write a function that accepts a slice of animals and returns a slice containing the subset of animals that are considered pets.
+
+- cat, chicken should return cat.
+- fish, mouse, bunny should return fish, bunny
+- hamster, cow, dog, moose should return hamster, dog
 
 # not covered:
 # capacity
